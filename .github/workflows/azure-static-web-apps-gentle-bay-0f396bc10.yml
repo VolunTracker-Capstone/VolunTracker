@@ -21,11 +21,11 @@ jobs:
       - name: Install dependencies
         uses: bahmutov/npm-install@v1
         with:
-          working-directory: /voluntrackerui
+          working-directory: "$GITHUB_WORKSPACE/voluntrackerui"
 
       - name: Build project
         run: npm run build
-        working-directory: /voluntrackerui
+        working-directory: "$GITHUB_WORKSPACE/voluntrackerui"
 
 #      - name: Upload production-ready build files
 #        uses: actions/upload-artifact@v3

@@ -15,17 +15,16 @@ jobs:
           submodules: true
           lfs: false
 
-      - name: Show workspace contents
-        run: |
-          ls $GITHUB_WORKSPACE/VolunTrackerUI
-
       - name: Setup Node
         uses: actions/setup-node@v3
 
+#      - name: Install dependencies
+#        uses: bahmutov/npm-install@v1
+#        with:
+#          working-directory: "$GITHUB_WORKSPACE/VolunTrackerUI"
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1
-        with:
-          working-directory: "$GITHUB_WORKSPACE/VolunTrackerUI"
+        run: npm ci
+        working-directory: "$GITHUB_WORKSPACE/VolunTrackerUI"
 
       - name: Build project
         run: npm run build

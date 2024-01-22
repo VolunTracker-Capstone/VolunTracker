@@ -22,12 +22,16 @@ jobs:
 #        uses: bahmutov/npm-install@v1
 #        with:
 #          working-directory: "$GITHUB_WORKSPACE/VolunTrackerUI"
+      - name: File Path
+        run: ls $GITHUB_WORKSPACE/VolunTrackerUI
+
       - name: Install dependencies
         run: npm ci
         working-directory: "$GITHUB_WORKSPACE/VolunTrackerUI"
 
-      - name: File Path
-        run: ls $GITHUB_WORKSPACE/VolunTrackerUI
+      - name: Build project
+        run: npm run build
+        working-directory: "$GITHUB_WORKSPACE/VolunTrackerUI"
 
 #      - name: Upload production-ready build files
 #        uses: actions/upload-artifact@v3

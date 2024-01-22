@@ -12,8 +12,12 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          submodules: recursive
+          submodules: true
           lfs: false
+
+      - name: Show workspace contents
+        run: |
+          ls $GITHUB_WORKSPACE
 
       - name: Setup Node
         uses: actions/setup-node@v3

@@ -1,9 +1,13 @@
 {
   "routes": [
     {
-      "route": "/",
-      "serve": "/dist",
-      "statusCode": 200
+      "route": "/assets/*.js",
+      "headers": {
+        "Content-Type": "text/javascript"
+      }
     }
-  ]
+  ],
+  "navigationFallback": {
+    "rewrite": "/index.html"
+  }
 }

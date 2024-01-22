@@ -24,7 +24,7 @@ jobs:
 #          working-directory: "$GITHUB_WORKSPACE/VolunTrackerUI"
       - name: Install dependencies
         run: npm ci
-        working-directory: "$GITHUB_WORKSPACE/VolunTrackerUI"
+        working-directory: "/VolunTrackerUI"
 
       - name: Build project
         run: npm run build

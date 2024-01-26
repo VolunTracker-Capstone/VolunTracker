@@ -17,6 +17,7 @@ function App() {
       <div className="card">
         <p>
           Coming Soon!
+            Hopefully...
         </p>
       </div>
     </>

@@ -15,7 +15,7 @@ function AboutUs() {
             <h1>About Us</h1>
             <div className="card">
                 <p>
-                    Coming Soon!
+                    Coming Soon! We are working hard.
                 </p>
             </div>
         </>

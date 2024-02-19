@@ -1,68 +1,130 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+* {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
+  font-family: 'League Spartan', sans-serif;
+  background: #FEF9E1;
+
+}
+
+.mainNav {
+  background-color: #e27602;
+  justify-content: space-between;
+  margin-bottom: 25px;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  align-items: center;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.navRow1 {
+  display: flex;
+  width: 100%;
+}
+.navRow2 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  width: 90%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
+.column {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
 }
-button:hover {
-  border-color: #646cff;
+.column2 {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  margin-left: 60px;
+  margin-right: 60px;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.separator {
+  width: 100%;
+  height: 2px;
+  background-color: white;
+  margin: 10px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.nav-item {
+  display: inline-block;
+  color: white;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+.nav-item:hover {
+  font-weight: bolder;
+}
+
+.mainNav .active {
+  text-underline: #F6F6F2;
+}
+
+#pageTitle {
+  color: #F6F6F2;
+  font-weight: bold;
+  font-size: 2.8rem;
+  margin-left: -150px;
+  margin-top: 15px;
+}
+
+#home {
+  text-decoration: underline;
+}
+
+#userIcon {
+  margin-top: 10px;
+  margin-left: 275px;
+}
+
+#voluntrackerLogo {
+  height: 60px;
+}
+
+.home {
+  justify-content: space-between;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.iconTitles {
+  font-size: 2.5rem;
+  color: #C23304;
+  font-weight: bold;
+}
+
+.homeRow1 {
+  display: flex;
+  width: 100%;
+}
+
+.homeRow2 {
+  display: flex;
+  width: 100%;
+}
+
+.homeRow3 {
+  display: flex;
+  width: 100%;
+}
+
+.button {
+  font-size: 1.2rem;
+  background: #e27602;
+  color: white;
+  padding: 10px 50px 10px 50px;
+  border-radius: 15px;
+}
+
+#location {
+  position: relative;
+  top: 40px;
 }

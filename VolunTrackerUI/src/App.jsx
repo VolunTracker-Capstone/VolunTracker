@@ -1,26 +1,15 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import voluntrackerLogo from '/VolunTrackerIcon.png'
 import './App.css'
+import NavBar from './components/NavBar.jsx'
+import Home from './components/Home.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  return (
-    <>
-      <div>
-        <a href="/">
-          <img src={voluntrackerLogo} className="logo" alt="VolunTracker logo" />
-        </a>
-      </div>
-      <h1>VolunTracker</h1>
-      <div className="card">
-        <p>
-          Coming Soon!
-        </p>
-      </div>
-    </>
-  )
+    return (
+        <>
+            <NavBar/>
+            <Home />
+        </>
+    )
 }
 
 export default App

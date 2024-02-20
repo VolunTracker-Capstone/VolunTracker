@@ -101,17 +101,7 @@ body {
   font-weight: bold;
 }
 
-.homeRow1 {
-  display: flex;
-  width: 100%;
-}
-
-.homeRow2 {
-  display: flex;
-  width: 100%;
-}
-
-.homeRow3 {
+.homeRows {
   display: flex;
   width: 100%;
 }

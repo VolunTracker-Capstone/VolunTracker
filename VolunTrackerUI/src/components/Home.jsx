@@ -7,7 +7,7 @@ import { FaLocationDot } from "react-icons/fa6";
 function Home() {
     return (
         <div className={'home'}>
-            <div className={'homeRow1'}>
+            <div className={'homeRows'}>
                 <div className={'column'}>
                     <FaRegQuestionCircle size={190} style={{fill: '#e27602'}}/>
                     <p className={'iconTitles'}>FAQ</p>
@@ -22,7 +22,7 @@ function Home() {
                 </div>
 
             </div>
-            <div className={'homeRow2'}>
+            <div className={'homeRows'}>
                 <div className={'column2'}>
                     <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor dignissim convallis aenean et tortor at risus.</p>
                 </div>
@@ -33,7 +33,7 @@ function Home() {
                     <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor dignissim convallis aenean et tortor at risus.</p>
                 </div>
             </div>
-            <div className={'homeRow3'}>
+            <div className={'homeRows'}>
                 <div className={'column'}>
                     <Button className={'button'}>FAQ</Button>
                 </div>

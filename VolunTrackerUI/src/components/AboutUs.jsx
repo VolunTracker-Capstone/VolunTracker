@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import voluntrackerLogo from '/VolunTrackerIcon.png'
-import './App.css'
+import voluntrackerLogo from '/VolunTrackerUI/src/VolunTrackerIcon.png'
+import '../App.css'
 
 function AboutUs() {
     const [count, setCount] = useState(0)

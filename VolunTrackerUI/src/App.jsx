@@ -2,7 +2,7 @@ import './App.css'
 import NavBar from './components/NavBar.jsx'
 import Home from './components/Home.jsx'
 import {Route, Routes} from "react-router-dom";
-import NotFound from "./NotFound.jsx";
+import NotFound from "./components/NotFound.jsx";
 
 function App() {
 

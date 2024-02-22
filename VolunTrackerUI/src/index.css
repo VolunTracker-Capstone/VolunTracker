@@ -20,11 +20,11 @@ body {
   align-items: center;
 }
 
-.navRow1 {
+.mainHeader {
   display: flex;
   width: 100%;
 }
-.navRow2 {
+.navLinks {
   display: flex;
   justify-content: space-between;
   align-items: center;

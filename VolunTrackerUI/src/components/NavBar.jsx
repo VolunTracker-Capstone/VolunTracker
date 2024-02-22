@@ -9,7 +9,7 @@ function Navbar() {
     return (
         <div>
             <Nav className={'mainNav'} activeKey={'/'}>
-                <div className={'navRow1'}>
+                <div className={'mainHeader'}>
                     <div className={'column'}>
                         <h2 id={'pageTitle'}> VolunTracker </h2>
                     </div>
@@ -21,12 +21,12 @@ function Navbar() {
                     </div>
                 </div>
                 <div className={'separator'}></div>
-                <div className={'navRow2'}>
+                <div className={'navLinks'}>
                     <Nav.Item>
                         <Nav.Link as={NavLink} to={'/'}><span id={'home'} className={'nav-item'}>Home</span></Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
-                        <Nav.Link as={NavLink} to={'/'}><span className={'nav-item'}>About Us</span></Nav.Link>
+                        <Nav.Link as={NavLink} to={'/about'}><span className={'nav-item'}>About Us</span></Nav.Link>
                     </Nav.Item>
                     <Nav.Item>
                         <Nav.Link as={NavLink} to={'/'}><span className={'nav-item'}>Organizations</span></Nav.Link>

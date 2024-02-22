@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import voluntrackerLogo from '/VolunTrackerUI/src/VolunTrackerIcon.png'
 import '../App.css'
 
 function AboutUs() {
@@ -7,11 +6,6 @@ function AboutUs() {
 
     return (
         <>
-            <div>
-                <a href="/">
-                    <img src={voluntrackerLogo} className="logo" alt="VolunTracker logo" />
-                </a>
-            </div>
             <h1>About Us</h1>
             <div className="card">
                 <p>

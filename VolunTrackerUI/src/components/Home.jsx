@@ -9,15 +9,15 @@ function Home() {
         <div className={'home'}>
             <div className={'homeRows'}>
                 <div className={'column'}>
-                    <FaRegQuestionCircle size={190} style={{fill: '#e27602'}}/>
+                    <FaRegQuestionCircle size={150} style={{fill: '#e27602'}}/>
                     <p className={'iconTitles'}>FAQ</p>
                 </div>
                 <div className={'column'}>
-                    <IoIosPeople size={190} style={{fill: '#e27602'}}/>
+                    <IoIosPeople size={150} style={{fill: '#e27602'}}/>
                     <p className={'iconTitles'}>Why VolunTracker?</p>
                 </div>
                 <div className={'column'} id={'location'}>
-                    <FaLocationDot size={150} style={{fill: '#e27602'}}/>
+                    <FaLocationDot size={110} style={{fill: '#e27602'}}/>
                     <p className={'iconTitles'}>Get Started</p>
                 </div>
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Nav} from "react-bootstrap";
 import {NavLink} from "react-router-dom";
-import logo from '../VolunTrackerIcon.png';
+import logo from '../assets/VolunTrackerIcon.png';
 import {VscAccount} from "react-icons/vsc";
 
 

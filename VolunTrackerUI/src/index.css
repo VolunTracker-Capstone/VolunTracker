@@ -43,27 +43,23 @@ body {
   padding: 10px;
   margin-left: 60px;
   margin-right: 60px;
+  font-size: 1.2em;
 }
 .separator {
   width: 100%;
   height: 2px;
-  background-color: white;
+  background-color: #FEF9E1;
   margin: 10px;
 }
 
 .nav-item {
   display: inline-block;
   color: white;
-  font-weight: bold;
   font-size: 1.5rem;
 }
 
 .nav-item:hover {
-  font-weight: bolder;
-}
-
-.mainNav .active {
-  text-underline: #F6F6F2;
+  text-decoration: underline;
 }
 
 #pageTitle {
@@ -72,10 +68,6 @@ body {
   font-size: 2.8rem;
   margin-left: -150px;
   margin-top: 15px;
-}
-
-#home {
-  text-decoration: underline;
 }
 
 #userIcon {
@@ -111,10 +103,35 @@ body {
   background: #e27602;
   color: white;
   padding: 10px 50px 10px 50px;
-  border-radius: 15px;
+  border-radius: 20px;
+  border: 1px solid black;
+}
+.button:hover{
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 #location {
   position: relative;
   top: 40px;
+}
+
+.aboutCards{
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 60px;
+}
+.card{
+  color: #ffffff;
+  background-color: #e27602;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-align: center;
+  border: 2px solid black;
+  max-width: 350px;
+  font-size: 1.2em;
+}
+.card h2{
+  padding-bottom: 20px;
 }

@@ -3,39 +3,68 @@
 * {
   margin: 0;
   padding: 0;
-}
-
-body {
   font-family: 'League Spartan', sans-serif;
-  background: #FEF9E1;
-
+}
+body {
+  font-family: League Spartan,sans-serif;
+  background: #fef9e1
 }
 
+/*NavBar CSS*/
 .mainNav {
   background-color: #e27602;
   justify-content: space-between;
   margin-bottom: 25px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center
 }
-
 .mainHeader {
   display: flex;
-  width: 100%;
+  width: 100%
 }
 .navLinks {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px;
-  width: 90%;
+  width: 90%
+}
+.separator {
+  width: 100%;
+  height: 2px;
+  background-color: #fef9e1;
+  margin: 10px
+}
+.nav-item {
+  display: inline-block;
+  color: #fff;
+  font-size: 1.5rem
+}
+.nav-item:hover {
+  text-decoration: underline
+}
+#pageTitle {
+  color: #f6f6f2;
+  font-weight: 700;
+  font-size: 2.8rem;
+  margin-left: -150px;
+  margin-top: 15px
+}
+#userIcon {
+  margin-top: 10px;
+  margin-left: 275px
+}
+#voluntrackerLogo {
+  height: 60px
 }
 
+
+/*Home CSS*/
 .column {
   flex: 1;
   text-align: center;
-  padding: 10px;
+  padding: 10px
 }
 .column2 {
   flex: 1;
@@ -43,95 +72,111 @@ body {
   padding: 10px;
   margin-left: 60px;
   margin-right: 60px;
-  font-size: 1.2em;
+  font-size: 1.2em
 }
-.separator {
-  width: 100%;
-  height: 2px;
-  background-color: #FEF9E1;
-  margin: 10px;
-}
-
-.nav-item {
-  display: inline-block;
-  color: white;
-  font-size: 1.5rem;
-}
-
-.nav-item:hover {
-  text-decoration: underline;
-}
-
-#pageTitle {
-  color: #F6F6F2;
-  font-weight: bold;
-  font-size: 2.8rem;
-  margin-left: -150px;
-  margin-top: 15px;
-}
-
-#userIcon {
-  margin-top: 10px;
-  margin-left: 275px;
-}
-
-#voluntrackerLogo {
-  height: 60px;
-}
-
 .home {
   justify-content: space-between;
   margin-bottom: 25px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center
 }
-
 .iconTitles {
   font-size: 2.5rem;
-  color: #C23304;
-  font-weight: bold;
+  color: #c23304;
+  font-weight: 700
 }
-
 .homeRows {
   display: flex;
-  width: 100%;
+  width: 100%
 }
-
 .button {
   font-size: 1.2rem;
   background: #e27602;
-  color: white;
-  padding: 10px 50px 10px 50px;
+  color: #fff;
+  padding: 10px 50px;
   border-radius: 20px;
-  border: 1px solid black;
+  border: 1px solid black
 }
-.button:hover{
+.button:hover {
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: underline
 }
 
-#location {
-  position: relative;
-  top: 40px;
-}
 
-.aboutCards{
+/*About CSS*/
+.aboutCards {
   display: flex;
   justify-content: center;
   gap: 100px;
   margin-top: 60px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
-.card{
-  color: #ffffff;
+.card {
+  color: #fff;
   background-color: #e27602;
   padding: 10px 20px;
   border-radius: 25px;
   text-align: center;
   border: 2px solid black;
   max-width: 350px;
-  font-size: 1.2em;
+  font-size: 1.2em
 }
-.card h2{
-  padding-bottom: 20px;
+.card h2 {
+  padding-bottom: 20px
+}
+
+
+/*User CSS*/
+.login-container {
+  padding-top: 50px;
+  text-align: center;
+}
+.login-header {
+  font-size: 40px;
+}
+.form-container {
+  display: inline-block;
+  width: 400px;
+  text-align: left;
+  margin-top: 10px;
+}
+.input-container {
+  margin-bottom: 15px;
+}
+.login-labels {
+  font-weight: bold;
+  font-size: 20px;
+}
+.login-input-field {
+  width: calc(100% - 20px);
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.creation-checkbox {
+  transform: scale(1.5);
+  margin-right: 5px;
+}
+.login-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+.login-button {
+  width: calc(100% - 20px);
+  padding: 15px 20px;
+  border-radius: 20px;
+  background-color: #e27602;
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 18px;
+}
+.links {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
 }

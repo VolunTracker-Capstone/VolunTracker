@@ -16,7 +16,7 @@ function Home() {
                     <IoIosPeople size={150} style={{fill: '#e27602'}}/>
                     <p className={'iconTitles'}>Why VolunTracker?</p>
                 </div>
-                <div className={'column'} id={'location'}>
+                <div className={'column'} style={{position: "relative", top: "40px"}}>
                     <FaLocationDot size={110} style={{fill: '#e27602'}}/>
                     <p className={'iconTitles'}>Get Started</p>
                 </div>

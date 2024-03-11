@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import '../../App.css'
+import {Link} from "react-router-dom";
 
 
 function Login() {
@@ -9,7 +10,6 @@ function Login() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here you can add your login logic, such as sending the credentials to your backend
         console.log('Email:', email);
         console.log('Password:', password);
     };
@@ -44,9 +44,9 @@ function Login() {
                     </div>
                 </form>
                 <div className="links">
-                    <a href="/password-reset">Forgot Password?</a>
+                    <Link to="password-reset">Forgot Password?</Link>
                     <span style={{margin: '0 10px'}}>|</span>
-                    <a href="/create-account">Create Account</a>
+                    <Link to="create-account">Create Account</Link>
                 </div>
             </div>
         </div>

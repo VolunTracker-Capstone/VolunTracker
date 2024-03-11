@@ -20,8 +20,8 @@ function App() {
                 <Route path="/events" element={<Home/>} />
                 <Route path="/manage" element={<Home/>} />
                 <Route path="/login" element={<Login/>} />
-                <Route path="/create-account" element={<AccountCreation/>} />
-                <Route path="/password-reset" element={<ForgotPassword/>} />
+                <Route path="/createaccount" element={<AccountCreation/>} />
+                <Route path="/passwordreset" element={<ForgotPassword/>} />
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </div>

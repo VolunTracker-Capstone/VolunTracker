@@ -32,7 +32,7 @@ function Navbar() {
                 <NavItemLink to='/' text='Organizations' />
                 <NavItemLink to='/' text='Events' />
                 <NavItemLink to='/' text='Manage' />
-                <NavItemLink to='/login' text='Login' />
+                <NavItemLink to='/user/login' text='Login' />
             </div>
         </Nav>
     );

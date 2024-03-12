@@ -39,14 +39,14 @@ function Login() {
                             className="login-input-field"
                         />
                     </div>
-                    <div className="login-button-container"> {/* Container for centering the button */}
+                    <div className="login-button-container">
                         <button type="submit" className="login-button">Login</button>
                     </div>
                 </form>
                 <div className="links">
-                    <Link to="password-reset">Forgot Password?</Link>
+                    <Link to="../password-reset">Forgot Password?</Link>
                     <span style={{margin: '0 10px'}}>|</span>
-                    <Link to="create-account">Create Account</Link>
+                    <Link to="/create-account">Create Account</Link>
                 </div>
             </div>
         </div>

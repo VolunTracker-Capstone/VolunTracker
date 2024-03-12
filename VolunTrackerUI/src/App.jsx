@@ -20,10 +20,12 @@ function App() {
                 <Route path="/organization" element={<Home/>} />
                 <Route path="/events" element={<Home/>} />
                 <Route path="/manage" element={<Home/>} />
-                <Route path="/user" element={<User/>} />
-                <Route path="login" element={<Login/>} />
                 <Route path="create-account" element={<AccountCreation/>} />
-                <Route path="password-reset" element={<ForgotPassword/>} />
+                <Route path="/user">
+                    <Route path="" element={<User/>} />
+                    <Route path="login" element={<Login/>} />
+                    <Route path="password-reset" element={<ForgotPassword/>} />
+                </Route>
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </div>

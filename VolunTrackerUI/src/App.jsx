@@ -7,6 +7,7 @@ import AboutUs from "./components/AboutUs.jsx";
 import Login from "./components/user/Login.jsx";
 import AccountCreation from "./components/user/AccountCreation.jsx";
 import ForgotPassword from "./components/user/ForgotPassword.jsx";
+import OrganizationCreation from "./components/OrganizationCreation.jsx";
 
 function App() {
 
@@ -16,7 +17,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/about" element={<AboutUs/>} />
-                <Route path="/organization" element={<Home/>} />
+                <Route path="/create-organization" element={<OrganizationCreation/>} />
                 <Route path="/events" element={<Home/>} />
                 <Route path="/manage" element={<Home/>} />
                 <Route path="/login" element={<Login/>} />

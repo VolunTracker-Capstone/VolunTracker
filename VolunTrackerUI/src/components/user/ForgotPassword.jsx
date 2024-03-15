@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import '../../App.css'; // Importing the shared CSS file
+import '../../App.css';
 
 function ForgotPassword() {
     const [email, setEmail] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Here you can add your forgot password logic
+        // Here we can add the forgot password logic
         console.log('Email:', email);
-        // Add your password reset logic here
+        // Add the password reset logic here
     };
 
     return (

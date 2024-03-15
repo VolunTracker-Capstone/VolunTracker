@@ -3,6 +3,7 @@ import {Button} from 'react-bootstrap';
 import { FaRegQuestionCircle } from "react-icons/fa";
 import { IoIosPeople } from "react-icons/io";
 import { FaLocationDot } from "react-icons/fa6";
+import {Link} from "react-router-dom";
 
 function Home() {
     return (
@@ -35,13 +36,13 @@ function Home() {
             </div>
             <div className={'homeRows'}>
                 <div className={'column'}>
-                    <Button className={'button'}>FAQ</Button>
+                    <Link to="" className={'button'}>FAQ</Link>
                 </div>
                 <div className={'column'}>
-                    <Button className={'button'}>VolunTracker</Button>
+                    <Link to="about" className={'button'}>VolunTracker</Link>
                 </div>
                 <div className={'column'}>
-                    <Button className={'button'}>Join Now</Button>
+                    <Link to="create-account" className={'button'}>Join Now</Link>
                 </div>
             </div>
         </div>

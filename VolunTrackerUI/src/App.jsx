@@ -5,6 +5,7 @@ import {Route, Routes} from "react-router-dom";
 import NotFound from "./components/NotFound.jsx";
 import AboutUs from "./components/AboutUs.jsx";
 import Login from "./components/user/Login.jsx";
+import User from "./components/user/User.jsx";
 import AccountCreation from "./components/user/AccountCreation.jsx";
 import ForgotPassword from "./components/user/ForgotPassword.jsx";
 import OrganizationCreation from "./components/OrganizationCreation.jsx";
@@ -20,9 +21,12 @@ function App() {
                 <Route path="/create-organization" element={<OrganizationCreation/>} />
                 <Route path="/events" element={<Home/>} />
                 <Route path="/manage" element={<Home/>} />
-                <Route path="/login" element={<Login/>} />
-                <Route path="/create-account" element={<AccountCreation/>} />
-                <Route path="/password-reset" element={<ForgotPassword/>} />
+                <Route path="create-account" element={<AccountCreation/>} />
+                <Route path="/user">
+                    <Route path="" element={<User/>} />
+                    <Route path="login" element={<Login/>} />
+                    <Route path="password-reset" element={<ForgotPassword/>} />
+                </Route>
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </div>

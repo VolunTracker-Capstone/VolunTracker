@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import '../../App.css'
+import '../../App.css';
+import {Link} from "react-router-dom";
 
 function AccountCreation() {
     const [email, setEmail] = useState('');
@@ -21,7 +22,7 @@ function AccountCreation() {
         <div className="login-container">
             <h1 className="login-header">Create an Account</h1>
             <p className="links">Create an account to join or create an organization.</p>
-            <p className="links">Already have an account? <a href="/login">Login here</a></p>
+            <p className="links">Already have an account? <Link to="/user/login">Login here</Link></p>
             <div className="form-container">
                 <form onSubmit={handleSubmit}>
                     <div className="input-container">

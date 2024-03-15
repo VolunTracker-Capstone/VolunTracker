@@ -2,6 +2,7 @@ import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { VscAccount } from 'react-icons/vsc';
+import {Link} from "react-router-dom";
 import logo from '../assets/VolunTrackerIcon.png';
 
 function Navbar() {
@@ -9,13 +10,19 @@ function Navbar() {
         <Nav className='mainNav' activeKey='/'>
             <div className='mainHeader'>
                 <div className='column'>
-                    <h2 id='pageTitle'> VolunTracker </h2>
+                    <Link to="/" style={{textDecoration: "None"}}>
+                        <h2 id='pageTitle'> VolunTracker </h2>
+                    </Link>
                 </div>
                 <div className='column'>
-                    <img id='voluntrackerLogo' src={logo} alt='VolunTracker Logo' />
+                    <Link to="/" style={{textDecoration: "None"}}>
+                        <img id='voluntrackerLogo' src={logo} alt='VolunTracker Logo' />
+                    </Link>
                 </div>
                 <div className='column'>
-                    <VscAccount size={50} style={{ fill: 'white' }} id='userIcon' />
+                    <Link to="/user">
+                        <VscAccount size={50} style={{ fill: 'white' }} id='userIcon' />
+                    </Link>
                 </div>
             </div>
             <div className='separator'></div>
@@ -25,7 +32,7 @@ function Navbar() {
                 <NavItemLink to='/' text='Organizations' />
                 <NavItemLink to='/' text='Events' />
                 <NavItemLink to='/' text='Manage' />
-                <NavItemLink to='/login' text='Login' />
+                <NavItemLink to='/user/login' text='Login' />
             </div>
         </Nav>
     );

@@ -195,8 +195,8 @@ body {
   padding-bottom: 10px;
 }
 .orgFormContainer{
-  margin-left: 250px;
-  grid-column: 1/3;
+  grid-column: 2/3;
+  place-items: center;
 }
 .orgCreationLabels{
   display: block;
@@ -236,12 +236,11 @@ body {
   font-size: 18px;
 }
 .orgImageFormContainer{
-  grid-column: 4/6;
+  grid-column: 4/5;
   margin-top: 30px;
   margin-bottom: 20px;
-  margin-right: 250px;
   text-align: center;
-  justify-items: center;
+  place-items: center;
 }
 .dragImage{
   border: 2px dashed black;

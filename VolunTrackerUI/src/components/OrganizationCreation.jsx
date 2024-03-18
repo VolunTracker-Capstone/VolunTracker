@@ -81,7 +81,7 @@ function OrganizationCreation(){
             <div className="orgImageFormContainer">
                 <div className="dragImage" >
                     <FiUpload id="uploadIcon" size={90} style={{color: '#e27602'}}/>
-                    <img style={{width:200, maxHeight:200}} src={orgImg}/>
+                    <img style={{width:150, maxHeight:200, position:"relative" }} src={orgImg}/>
                 </div>
                 <h3>Upload a Profile Picture for Organization</h3>
                 <input

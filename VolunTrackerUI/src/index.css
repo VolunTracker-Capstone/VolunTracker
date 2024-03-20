@@ -180,6 +180,9 @@ body {
   text-align: center;
   font-size: 18px;
 }
+.password-requirements{
+  margin-left: 30px;
+}
 
 /*Organization CSS*/
 .createOrgContainer{

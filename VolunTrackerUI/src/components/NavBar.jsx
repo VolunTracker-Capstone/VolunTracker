@@ -29,7 +29,7 @@ function Navbar() {
             <div className='navLinks'>
                 <NavItemLink to='/' text='Home' />
                 <NavItemLink to='/about' text='About Us' />
-                <NavItemLink to='/' text='Organizations' />
+                <NavItemLink to='/organization/create' text='Organizations' />
                 <NavItemLink to='/' text='Events' />
                 <NavItemLink to='/' text='Manage' />
                 <NavItemLink to='/user/login' text='Login' />

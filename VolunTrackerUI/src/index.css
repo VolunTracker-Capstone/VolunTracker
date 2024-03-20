@@ -240,7 +240,7 @@ body {
 }
 .orgImageFormContainer{
   grid-column: 4/5;
-  margin-top: 30px;
+  margin-top: 50px;
   margin-bottom: 20px;
   text-align: center;
   place-items: center;
@@ -268,3 +268,4 @@ input[id=orgImgUpload]::file-selector-button {
 input[id=orgImgUpload] {
   color: rgba(0, 0, 0, 0)
 }
+

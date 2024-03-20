@@ -9,6 +9,7 @@ function OrganizationCreation(){
     const [orgState, setOrgState] = useState('');
     const [orgZip, setOrgZip] = useState('');
     const [orgImg, setOrgImg] = useState('');
+    const [orgWebsite, setOrgWebsite] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Organization Name:', orgName);
@@ -16,7 +17,8 @@ function OrganizationCreation(){
         console.log('Organization City:', orgCity);
         console.log('Organization State:', orgState);
         console.log('Organization Zip:', orgZip);
-        console.log('Organization image:', orgImg);
+        console.log('Organization Image:', orgImg);
+        console.log('Organization Website:', orgWebsite);
     };
 
     return(
@@ -72,6 +74,16 @@ function OrganizationCreation(){
                             pattern="[0-9]{5}"
                             value={orgZip}
                             onChange={(e) => setOrgZip(e.target.value)}
+                            required
+                            className="createOrgInputField"
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label className="orgCreationLabels">Website:</label>
+                        <input
+                            type="text"
+                            value={orgWebsite}
+                            onChange={(e) => setOrgWebsite(e.target.value)}
                             required
                             className="createOrgInputField"
                         />

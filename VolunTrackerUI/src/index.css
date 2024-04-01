@@ -96,11 +96,14 @@ body {
   color: #fff;
   padding: 10px 50px;
   border-radius: 20px;
-  border: 1px solid black
+  border: 1px solid black;
+  text-decoration: none;
 }
 .button:hover {
+  color: #e27602;
+  background: #ffffff;
   cursor: pointer;
-  text-decoration: underline
+  border: 1px solid #e27602;
 }
 
 
@@ -268,4 +271,77 @@ input[id=orgImgUpload]::file-selector-button {
 input[id=orgImgUpload] {
   color: rgba(0, 0, 0, 0)
 }
+
+/*FAQ CSS*/
+.faq-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 1.4em;
+}
+.faq-page h1{
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #c23304;
+}
+
+.accordion-title {
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.accordion-title:hover {
+  color: #e27602;
+}
+.accordion-title.active {
+  color: #e27602;
+  text-decoration: underline;
+}
+.accordion-content p {
+  margin: 0;
+  font-size: .8em;
+  padding-bottom: 5px;
+}
+
+/*Manage CSS*/
+.manageGrid{
+  display: grid;
+  grid-template-columns: .4fr 1fr 1fr;
+  margin: 0;
+}
+#manageNav{
+  grid-column: 1;
+  border-right: 1px solid black;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  height: 100vh;
+}
+#manageNavItems{
+  font-size: 1.4em;
+  margin-bottom: 75px;
+}
+#manageNavItems:hover {
+  cursor: pointer;
+  color: #e27602;
+}
+.manageContent{
+  margin: 20px 50px;
+  grid-column: 2/3;
+}
+.manageContent h1{
+  margin-bottom: 50px;
+}
+.manageContent #addOrgButton{
+  margin-left: 50px;
+}
+.manageContent #addOrgButton:hover{
+  color: #e27602;
+  cursor: pointer;
+}
+
+
 

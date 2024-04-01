@@ -9,6 +9,8 @@ import User from "./components/user/User.jsx";
 import AccountCreation from "./components/user/AccountCreation.jsx";
 import ForgotPassword from "./components/user/ForgotPassword.jsx";
 import OrganizationCreation from "./components/organization/OrganizationCreation.jsx";
+import FAQ from "./components/FAQ.jsx";
+import Manage from "./components/Manage.jsx";
 
 function App() {
 
@@ -22,8 +24,9 @@ function App() {
                     {/*<Route path="/" element={<OrganizationCreation/>} />*/}
                     {/*<Route path="/create" element={<OrganizationCreation/>} />*/}
                 </Route>
+                <Route path="/faq" element={<FAQ/>} ></Route>
                 <Route path="/events" element={<Home/>} />
-                <Route path="/manage" element={<Home/>} />
+                <Route path="/manage" element={<Manage/>} />
                 <Route path="create-account" element={<AccountCreation/>} />
                 <Route path="/user">
                     <Route path="" element={<User/>} />

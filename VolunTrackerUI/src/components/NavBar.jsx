@@ -31,7 +31,7 @@ function Navbar() {
                 <NavItemLink to='/about' text='About Us' />
                 <NavItemLink to='/organization/create' text='Organizations' />
                 <NavItemLink to='/' text='Events' />
-                <NavItemLink to='/' text='Manage' />
+                <NavItemLink to='/manage' text='Manage' />
                 <NavItemLink to='/user/login' text='Login' />
             </div>
         </Nav>

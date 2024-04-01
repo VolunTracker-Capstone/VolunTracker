@@ -25,18 +25,18 @@ function Home() {
             </div>
             <div className={'homeRows'}>
                 <div className={'column2'}>
-                    <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor dignissim convallis aenean et tortor at risus.</p>
+                    <p>Have a question? Visit our FAQ page to find answers to the most commonly asked questions about VolunTracker.</p>
                 </div>
                 <div className={'column2'}>
-                    <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor dignissim convallis aenean et tortor at risus.</p>
+                    <p >Visit our about us page where we demonstrate what VolunTracker is all about!</p>
                 </div>
                 <div className={'column2'}>
-                    <p >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tortor dignissim convallis aenean et tortor at risus.</p>
+                    <p >Hop right in by browsing through public organizations that may interest you!</p>
                 </div>
             </div>
             <div className={'homeRows'}>
                 <div className={'column'}>
-                    <Link to="" className={'button'}>FAQ</Link>
+                    <Link to="faq" className={'button'} >FAQ</Link>
                 </div>
                 <div className={'column'}>
                     <Link to="about" className={'button'}>VolunTracker</Link>

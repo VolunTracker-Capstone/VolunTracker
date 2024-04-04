@@ -129,7 +129,9 @@ body {
 .card h2 {
   padding-bottom: 20px
 }
-
+.aboutCards p{
+  line-height: 1.2;
+}
 
 /*User CSS*/
 .login-container {

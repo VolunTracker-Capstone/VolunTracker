@@ -1,11 +1,17 @@
+// eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from 'react';
 import '../../App.css';
 import {Link} from "react-router-dom";
 
 function AccountCreation() {
+    let url = "https://voluntrackerapi.azurewebsites.net/members";
+
     const [formData, setFormData] = useState({
         email: '',
+        firstName: '',
+        lastName: '',
         username: '',
+        phone: '',
         password: '',
         confirmPassword: '',
         receiveEmails: false,
@@ -43,7 +49,9 @@ function AccountCreation() {
         setPasswordRequirements(requirements);
 
         const unmetRequirements = Object.entries(requirements)
+            // eslint-disable-next-line no-unused-vars
             .filter(([_, meetsRequirement]) => !meetsRequirement)
+            // eslint-disable-next-line no-unused-vars
             .map(([requirement, _]) => requirement);
 
         if (unmetRequirements.length === 0) {
@@ -53,15 +61,49 @@ function AccountCreation() {
         }
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (formData.password !== formData.confirmPassword) {
             setPasswordError("Those passwords do not match. Try again.");
             return;
         }
-
+        const data = {
+            'memberID': 8,
+            'firstName': formData.firstName,
+            'lastName': formData.lastName,
+            'username': formData.username,
+            'password': formData.password,
+            'phone': formData.phone,
+            'email': formData.email,
+            'totalHours': 0,
+            'profilePicture': "string"
+        }
+        const requestOptions = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        };
+        fetch(url, requestOptions)
+            .then(async response => {
+                const isJson = response.headers.get('content-type')?.includes('application/json');
+                const data = isJson && await response.json();
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+        setTimeout(() => {console.log("Loading");
+        }, 500);
         console.log('Email:', formData.email);
+        console.log('First Name:', formData.firstName);
+        console.log('Last Name:', formData.lastName);
         console.log('Username:', formData.username);
+        console.log('Phone:', formData.phone);
         console.log('Password:', formData.password);
         console.log('Confirm Password:', formData.confirmPassword);
         console.log('Receive Emails:', formData.receiveEmails);
@@ -82,6 +124,39 @@ function AccountCreation() {
                             type="email"
                             name="email"
                             value={formData.email}
+                            onChange={handleChange}
+                            required
+                            className="login-input-field"
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label className="login-labels">First Name:</label>
+                        <input
+                            type="text"
+                            name="firstName"
+                            value={formData.firstName}
+                            onChange={handleChange}
+                            required
+                            className="login-input-field"
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label className="login-labels">Last Name:</label>
+                        <input
+                            type="text"
+                            name="lastName"
+                            value={formData.lastName}
+                            onChange={handleChange}
+                            required
+                            className="login-input-field"
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label className="login-labels">Phone Number:</label>
+                        <input
+                            type="text"
+                            name="phone"
+                            value={formData.phone}
                             onChange={handleChange}
                             required
                             className="login-input-field"

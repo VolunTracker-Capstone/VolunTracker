@@ -345,5 +345,16 @@ input[id=orgImgUpload] {
   cursor: pointer;
 }
 
+.notification {
+  /* z-index to show it on top of other elements if you have other modals. */
+  z-index: 100;
+  position: fixed;
+  bottom: 3rem;
+  left: 30vw;
+  width: 50vw;
+  height: 8vh;
 
+  background-color: #808080;
+  color: #ffffff;
+}
 

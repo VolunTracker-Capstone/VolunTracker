@@ -6,7 +6,7 @@ import {Link, useNavigate} from "react-router-dom";
 function AccountCreation() {
     let url = "https://voluntrackerapi.azurewebsites.net/members";
     let navigate = useNavigate();
-    let path = "/user/Login";
+    let path = "/user/login";
 
     const [formData, setFormData] = useState({
         email: '',
@@ -76,8 +76,6 @@ function AccountCreation() {
             'password': formData.password,
             'phone': formData.phone,
             'email': formData.email,
-            'totalHours': 0,
-            'profilePicture': "string"
         }
         const requestOptions = {
             method: 'POST',

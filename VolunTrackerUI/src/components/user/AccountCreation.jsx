@@ -68,7 +68,6 @@ function AccountCreation() {
             return;
         }
         const data = {
-            'memberID': 8,
             'firstName': formData.firstName,
             'lastName': formData.lastName,
             'username': formData.username,

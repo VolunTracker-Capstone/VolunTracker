@@ -344,6 +344,92 @@ input[id=orgImgUpload] {
   color: #e27602;
   cursor: pointer;
 }
-
-
+/*Event Creation CSS*/
+.createEventContainer{
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.createEventHeader{
+  text-align: center;
+  grid-column: 2/5;
+}
+.createEventHeader h1{
+  padding-bottom: 10px;
+}
+.eventFormContainer{
+  grid-column: 2/3;
+  place-items: center;
+}
+.eventCreationLabels{
+  display: block;
+  font-weight: bold;
+  font-size: 20px;
+}
+.createEventInputField{
+  display: block;
+  width: 75%;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border: 2px solid black;
+}
+.createEventSelectField{
+  display: block;
+  width: 80%;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border: 2px solid black;
+}
+.createEventButton{
+  grid-column: 3;
+  width: auto;
+  margin: 10px 0 20px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #e27602;
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 18px;
+}
+.eventImageFormContainer{
+  grid-column: 4/5;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  place-items: center;
+}
+.dragImage{
+  border: 2px dashed black;
+  padding: 60px;
+}
+.eventImageFormContainer h3{
+  margin:20px 0;
+}
+#eventImgUpload{
+  grid-column: auto;
+}
+input[id=eventImgUpload]::file-selector-button {
+  margin-left: 80px;
+  padding: 8px;
+  border-radius: 18px;
+  background-color: #e27602;
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 14px;
+}
+input[id=eventImgUpload] {
+  color: rgba(0, 0, 0, 0)
+}
+.eventDescriptionContainer{
+  padding-top: 30px;
+  text-align: left;
+}
 

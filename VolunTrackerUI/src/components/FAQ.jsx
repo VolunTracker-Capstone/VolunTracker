@@ -30,7 +30,7 @@ const FAQ = () => {
             answer: 'No payment needed! VolunTracker is a completely free site that has all of our features available to everybody.'
         },
         {
-            question: 'Is VolunTracker good?',
+            question: 'What can I do if I am having an issue with VolunTracker?',
             answer: 'Our goal at VolunTracker is to provide the best possible experience for everybody. If you have any feedback for us feel free to contact us we would love to hear from you!'
         }
     ];

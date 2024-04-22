@@ -11,6 +11,7 @@ import ForgotPassword from "./components/user/ForgotPassword.jsx";
 import OrganizationCreation from "./components/organization/OrganizationCreation.jsx";
 import FAQ from "./components/FAQ.jsx";
 import Manage from "./components/Manage.jsx";
+import EventCreation from "./components/organization/EventCreation.jsx";
 import NotificationTest from "./components/NotificationTest.jsx";
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
                     {/*<Route path="/create" element={<OrganizationCreation/>} />*/}
                 </Route>
                 <Route path="/faq" element={<FAQ/>} ></Route>
-                <Route path="/events" element={<Home/>} />
+                <Route path="/events" element={<EventCreation/>} />
                 <Route path="/manage" element={<Manage/>} />
                 <Route path="/notification-test" element={<NotificationTest/>} />
                 <Route path="create-account" element={<AccountCreation/>} />

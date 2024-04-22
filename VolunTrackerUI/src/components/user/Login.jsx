@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import '../../App.css'
 import {Link} from "react-router-dom";
-
+import SHA256 from 'crypto-js/sha256';
 
 function Login() {
     let url = "https://voluntrackerapi.azurewebsites.net/Login";
@@ -9,8 +9,10 @@ function Login() {
     const [count, setCount] = useState(0)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [hash, setHash] = useState('');
 
     const handleSubmit = (e) => {
+        const hash = SHA256(password).toString();
         e.preventDefault();
         fetch(url, requestOptions)
             .then(async response => {
@@ -30,10 +32,11 @@ function Login() {
         }, 500);
         console.log('Email:', email);
         console.log('Password:', password);
+        console.log('HashPassword', hash)
     };
     const data = {
         'email': email,
-        'password': password,
+        'password': hash,
     }
     const requestOptions = {
         method: 'POST',

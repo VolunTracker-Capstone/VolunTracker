@@ -2,6 +2,7 @@
 import React, {useEffect, useState} from 'react';
 import '../../App.css';
 import {Link, useNavigate} from "react-router-dom";
+import SHA256 from 'crypto-js/sha256';
 
 function AccountCreation() {
     let url = "https://voluntrackerapi.azurewebsites.net/members";
@@ -15,6 +16,7 @@ function AccountCreation() {
         username: '',
         phone: '',
         password: '',
+        hashPassword: '',
         confirmPassword: '',
         receiveEmails: false,
     });
@@ -30,6 +32,7 @@ function AccountCreation() {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+            console.log(formData.password);
         setFormData({
             ...formData,
             [name]: value,
@@ -62,6 +65,14 @@ function AccountCreation() {
             setIsSubmitDisabled(true);
         }
     };
+    const hashValue = () => {
+        // console log the default value
+        console.log(formData.password);
+        // log the hash value
+        const hash = SHA256(formData.password).toString();
+        formData.hashPassword = hash
+        console.log(hash);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -69,11 +80,12 @@ function AccountCreation() {
             setPasswordError("Those passwords do not match. Try again.");
             return;
         }
+        hashValue(formData.password)
         const data = {
             'firstName': formData.firstName,
             'lastName': formData.lastName,
             'username': formData.username,
-            'password': formData.password,
+            'password': formData.hashPassword,
             'phone': formData.phone,
             'email': formData.email,
         }
@@ -104,6 +116,7 @@ function AccountCreation() {
         console.log('Username:', formData.username);
         console.log('Phone:', formData.phone);
         console.log('Password:', formData.password);
+        console.log('Hash Password:', formData.hashPassword)
         console.log('Confirm Password:', formData.confirmPassword);
         console.log('Receive Emails:', formData.receiveEmails);
         onclick(navigate(path));

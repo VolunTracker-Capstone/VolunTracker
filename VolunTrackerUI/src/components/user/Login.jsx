@@ -4,14 +4,41 @@ import {Link} from "react-router-dom";
 
 
 function Login() {
+    let url = "https://voluntrackerapi.azurewebsites.net/Login";
+
     const [count, setCount] = useState(0)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        fetch(url, requestOptions)
+            .then(async response => {
+                const data = await response.text();
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+                localStorage.setItem("token", data);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+        setTimeout(() => {console.log("Loading");
+        }, 500);
         console.log('Email:', email);
         console.log('Password:', password);
+    };
+    const data = {
+        'email': email,
+        'password': password,
+    }
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
     };
 
     return (

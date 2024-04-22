@@ -12,6 +12,7 @@ import OrganizationCreation from "./components/organization/OrganizationCreation
 import FAQ from "./components/FAQ.jsx";
 import Manage from "./components/Manage.jsx";
 import EventCreation from "./components/organization/EventCreation.jsx";
+import NotificationTest from "./components/NotificationTest.jsx";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/faq" element={<FAQ/>} ></Route>
                 <Route path="/events" element={<EventCreation/>} />
                 <Route path="/manage" element={<Manage/>} />
+                <Route path="/notification-test" element={<NotificationTest/>} />
                 <Route path="create-account" element={<AccountCreation/>} />
                 <Route path="/user">
                     <Route path="" element={<User/>} />

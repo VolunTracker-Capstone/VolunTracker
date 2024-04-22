@@ -1,10 +1,12 @@
 // eslint-disable-next-line no-unused-vars
 import React, {useEffect, useState} from 'react';
 import '../../App.css';
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 function AccountCreation() {
     let url = "https://voluntrackerapi.azurewebsites.net/members";
+    let navigate = useNavigate();
+    let path = "/user/login";
 
     const [formData, setFormData] = useState({
         email: '',
@@ -68,15 +70,12 @@ function AccountCreation() {
             return;
         }
         const data = {
-            'memberID': 8,
             'firstName': formData.firstName,
             'lastName': formData.lastName,
             'username': formData.username,
             'password': formData.password,
             'phone': formData.phone,
             'email': formData.email,
-            'totalHours': 0,
-            'profilePicture': "string"
         }
         const requestOptions = {
             method: 'POST',
@@ -107,7 +106,7 @@ function AccountCreation() {
         console.log('Password:', formData.password);
         console.log('Confirm Password:', formData.confirmPassword);
         console.log('Receive Emails:', formData.receiveEmails);
-
+        onclick(navigate(path));
         setPasswordError('');
     };
 

@@ -8,7 +8,6 @@ function AccountCreation() {
     let url = "https://voluntrackerapi.azurewebsites.net/members";
     let navigate = useNavigate();
     let path = "/user/login";
-    console.log("V2")
     const [formData, setFormData] = useState({
         email: '',
         firstName: '',

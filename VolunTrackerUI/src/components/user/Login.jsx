@@ -1,18 +1,20 @@
 import { useState } from 'react'
 import '../../App.css'
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import SHA256 from 'crypto-js/sha256';
 
 function Login() {
     let url = "https://voluntrackerapi.azurewebsites.net/Login";
+    let navigate = useNavigate();
+    let path = "/manage";
 
-    const [count, setCount] = useState(0)
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [hash, setHash] = useState('');
 
     const handleSubmit = (e) => {
         const hash = SHA256(password).toString();
+        setHash(SHA256(password).toString());
         console.log("We are at least here")
         e.preventDefault();
         fetch(url, requestOptions)
@@ -24,7 +26,9 @@ function Login() {
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
-                localStorage.setItem("token", data);
+                localStorage.setItem("jwt", data);
+                console.log(data);
+                navigate(path);
             })
             .catch(error => {
                 console.error('There was an error!', error);
@@ -33,7 +37,8 @@ function Login() {
         }, 500);
         console.log('Email:', email);
         console.log('Password:', password);
-        console.log('HashPassword', hash)
+        console.log('HashPassword', hash);
+        console.log(data);
     };
     const data = {
         'email': email,

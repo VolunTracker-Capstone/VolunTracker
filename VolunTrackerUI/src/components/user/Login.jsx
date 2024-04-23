@@ -13,6 +13,7 @@ function Login() {
 
     const handleSubmit = (e) => {
         const hash = SHA256(password).toString();
+        console.log("We are at least here")
         e.preventDefault();
         fetch(url, requestOptions)
             .then(async response => {

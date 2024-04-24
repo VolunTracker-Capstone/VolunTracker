@@ -13,6 +13,8 @@ import FAQ from "./components/FAQ.jsx";
 import Manage from "./components/Manage.jsx";
 import EventCreation from "./components/organization/EventCreation.jsx";
 import NotificationTest from "./components/NotificationTest.jsx";
+import Organizations from "./components/organization/Organizations.jsx";
+import Events from "./components/organization/Events.jsx";
 
 function App() {
 
@@ -22,12 +24,14 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/about" element={<AboutUs/>} />
-                <Route path="/organization/create" element={<OrganizationCreation/>}>
+                <Route path="/organizations/create" element={<OrganizationCreation/>}>
                     {/*<Route path="/" element={<OrganizationCreation/>} />*/}
                     {/*<Route path="/create" element={<OrganizationCreation/>} />*/}
                 </Route>
+                <Route path="/organizations" element={<Organizations/>}></Route>
                 <Route path="/faq" element={<FAQ/>} ></Route>
-                <Route path="/events" element={<EventCreation/>} />
+                <Route path="/events/create" element={<EventCreation/>} />
+                <Route path="/events" element={<Events/>} />
                 <Route path="/manage" element={<Manage/>} />
                 <Route path="/notification-test" element={<NotificationTest/>} />
                 <Route path="create-account" element={<AccountCreation/>} />

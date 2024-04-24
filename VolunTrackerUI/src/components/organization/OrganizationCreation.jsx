@@ -1,27 +1,85 @@
 import '../../App.css'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import { FiUpload } from "react-icons/fi";
+import {useNavigate} from "react-router-dom";
 
 function OrganizationCreation(){
-    const [orgName, setOrgName] = useState('');
-    const [orgAddress, setOrgAddress] = useState('');
-    const [orgCity, setOrgCity] = useState('');
-    const [orgState, setOrgState] = useState('');
-    const [orgZip, setOrgZip] = useState('');
+    let url = "https://voluntrackerapi.azurewebsites.net/organizations";
+    let navigate = useNavigate();
+    let path = "/manage";
+
+    const [userInfo, setUserInfo] = useState('');
+    const [name, setName] = useState('');
+    const [street, setStreet] = useState('');
+    const [city, setCity] = useState('');
+    const [state, setState] = useState('');
+    const [zip, setZip] = useState('');
+    const [website, setWebsite] = useState('');
     const [orgImg, setOrgImg] = useState('');
-    const [orgWebsite, setOrgWebsite] = useState('');
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Organization Name:', orgName);
-        console.log('Organization Street:', orgAddress);
-        console.log('Organization City:', orgCity);
-        console.log('Organization State:', orgState);
-        console.log('Organization Zip:', orgZip);
-        console.log('Organization Image:', orgImg);
-        console.log('Organization Website:', orgWebsite);
+        fetch(url, requestOptions)
+            .then(async response => {
+                const data = await response.text();
+                // check for error response
+                if (!response.ok) {
+                    // get error message from body or default to response status
+                    const error = (data && data.message) || response.status;
+                    return Promise.reject(error);
+                }
+                navigate(path);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+        setTimeout(() => {console.log("Loading");
+        }, 500);
+        console.log('Organization Name:', name);
+        console.log('Organization Street:', street);
+        console.log('Organization City:', city);
+        console.log('Organization State:', state);
+        console.log('Organization Zip:', zip);
+        console.log('Organization Website:', website);
+    };
+
+    useEffect(() => {
+        const token = localStorage.getItem('jwt');
+        if (token) {
+            const decodedToken = parseJwt(token);
+            setUserInfo(decodedToken);
+        }
+    }, []);
+
+    function parseJwt(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(
+            atob(base64)
+                .split('')
+                .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                .join('')
+        );
+        return JSON.parse(jsonPayload);
+    }
+    const data = {
+        'organizationOwnerID': userInfo?.memberID,
+        'name': name,
+        'street': street,
+        'city': city,
+        'state': state,
+        'zip': zip,
+        'website': website
+    };
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify(data)
     };
 
     return(
+        <>
+        {userInfo ? (
         <div className="createOrgContainer">
             <div className="createOrgHeader">
                 <h1>Create an Organization</h1>
@@ -33,8 +91,8 @@ function OrganizationCreation(){
                         <label className="orgCreationLabels">Organization Name:</label>
                         <input
                             type="text"
-                            value={orgName}
-                            onChange={(e) => setOrgName(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                             required
                             className="createOrgInputField"
                         />
@@ -43,8 +101,8 @@ function OrganizationCreation(){
                         <label className="orgCreationLabels">Street Address:</label>
                         <input
                             type="text"
-                            value={orgAddress}
-                            onChange={(e) => setOrgAddress(e.target.value)}
+                            value={street}
+                            onChange={(e) => setStreet(e.target.value)}
                             required
                             className="createOrgInputField"
                         />
@@ -53,27 +111,30 @@ function OrganizationCreation(){
                         <label className="orgCreationLabels">City:</label>
                         <input
                             type="text"
-                            value={orgCity}
-                            onChange={(e) => setOrgCity(e.target.value)}
+                            value={city}
+                            onChange={(e) => setCity(e.target.value)}
                             required
                             className="createOrgInputField"
                         />
                     </div>
                     <div className="input-container">
                         <label className="orgCreationLabels">State:</label>
-                        <select className="createOrgSelectField" value={orgState} onChange={e => setOrgState(e.target.value)}>
-                            <option>Illinois</option>
-                            <option>Arizona</option>
-                            <option>Texas</option>
-                        </select>
+                        <input
+                            type="text"
+                            pattern="[0-9]{5}"
+                            value={state}
+                            onChange={(e) => setState(e.target.value)}
+                            required
+                            className="createOrgInputField"
+                        />
                     </div>
                     <div className="input-container">
                         <label className="orgCreationLabels">Zip:</label>
                         <input
                             type="text"
                             pattern="[0-9]{5}"
-                            value={orgZip}
-                            onChange={(e) => setOrgZip(e.target.value)}
+                            value={zip}
+                            onChange={(e) => setZip(e.target.value)}
                             required
                             className="createOrgInputField"
                         />
@@ -82,8 +143,8 @@ function OrganizationCreation(){
                         <label className="orgCreationLabels">Website:</label>
                         <input
                             type="text"
-                            value={orgWebsite}
-                            onChange={(e) => setOrgWebsite(e.target.value)}
+                            value={website}
+                            onChange={(e) => setWebsite(e.target.value)}
                             required
                             className="createOrgInputField"
                         />
@@ -105,7 +166,10 @@ function OrganizationCreation(){
                 />
             </div>
             <button type="submit" className="createOrgButton" onClick={handleSubmit}>Create Organization</button>
-        </div>
+        </div>) : (
+            <p>Loading...</p>
+        )}
+        </>
     );
 }
 

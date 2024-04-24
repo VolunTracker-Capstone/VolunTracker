@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
 
 * {
   margin: 0;
@@ -352,16 +352,16 @@ input[id=orgImgUpload] {
   outline: none;
 }
 .notification {
-    /* z-index to show it on top of other elements if you have other modals. */
-    z-index: 100;
-    position: fixed;
-    bottom: 3rem;
-    left: 30vw;
-    width: 50vw;
-    height: 8vh;
+  /* z-index to show it on top of other elements if you have other modals. */
+  z-index: 100;
+  position: fixed;
+  bottom: 3rem;
+  left: 30vw;
+  width: 50vw;
+  height: 8vh;
 
-    background-color: #808080;
-    color: #ffffff;
+  background-color: #808080;
+  color: #ffffff;
 }
 /*Event Creation CSS*/
 .createEventContainer{
@@ -494,4 +494,502 @@ input[id=eventImgUpload] {
   white-space: nowrap;
   padding-left: 30px; /* Add padding to the left to account for the left button */
   padding-right: 30px; /* Add padding to the right to account for the right button */
+}
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'League Spartan', sans-serif;
+}
+body {
+  font-family: League Spartan,sans-serif;
+  background: #fef9e1
+}
+
+/*NavBar CSS*/
+.mainNav {
+  background-color: #e27602;
+  justify-content: space-between;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+.mainHeader {
+  display: flex;
+  width: 100%
+}
+.navLinks {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  width: 90%
+}
+.separator {
+  width: 100%;
+  height: 2px;
+  background-color: #fef9e1;
+  margin: 10px
+}
+.nav-item {
+  display: inline-block;
+  color: #fff;
+  font-size: 1.5rem
+}
+.nav-item:hover {
+  text-decoration: underline
+}
+#pageTitle {
+  color: #f6f6f2;
+  font-weight: 700;
+  font-size: 2.8rem;
+  margin-left: -150px;
+  margin-top: 15px
+}
+#userIcon {
+  margin-top: 10px;
+  margin-left: 275px
+}
+#voluntrackerLogo {
+  height: 60px
+}
+
+
+/*Home CSS*/
+.column {
+  flex: 1;
+  text-align: center;
+  padding: 10px
+}
+.column2 {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  margin-left: 60px;
+  margin-right: 60px;
+  font-size: 1.2em
+}
+.home {
+  justify-content: space-between;
+  margin-bottom: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+.iconTitles {
+  font-size: 2.5rem;
+  color: #c23304;
+  font-weight: 700
+}
+.homeRows {
+  display: flex;
+  width: 100%
+}
+.button {
+  font-size: 1.2rem;
+  background: #e27602;
+  color: #fff;
+  padding: 10px 50px;
+  border-radius: 20px;
+  border: 1px solid black;
+  text-decoration: none;
+}
+.button:hover {
+  color: #e27602;
+  background: #ffffff;
+  cursor: pointer;
+  border: 1px solid #e27602;
+}
+
+
+/*About CSS*/
+.aboutCards {
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+  margin-top: 60px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+.card {
+  color: #fff;
+  background-color: #e27602;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-align: center;
+  border: 2px solid black;
+  max-width: 350px;
+  font-size: 1.2em
+}
+.card h2 {
+  padding-bottom: 20px
+}
+.aboutCards p{
+  line-height: 1.2;
+}
+
+/*User CSS*/
+.login-container {
+  padding-top: 50px;
+  text-align: center;
+}
+.login-header {
+  font-size: 40px;
+}
+.form-container {
+  display: inline-block;
+  width: 400px;
+  text-align: left;
+  margin-top: 10px;
+}
+.input-container {
+  margin-bottom: 15px;
+}
+.login-labels {
+  font-weight: bold;
+  font-size: 20px;
+}
+.login-input-field {
+  width: calc(100% - 20px);
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+.creation-checkbox {
+  transform: scale(1.5);
+  margin-right: 5px;
+}
+.login-button-container {
+  text-align: center;
+  margin-top: 20px;
+}
+.login-button {
+  width: calc(100% - 20px);
+  padding: 15px 20px;
+  border-radius: 20px;
+  background-color: #e27602;
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 18px;
+}
+.links {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+.password-requirements{
+  margin-left: 30px;
+}
+
+/*Organization CSS*/
+.createOrgContainer{
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.createOrgHeader{
+  text-align: center;
+  grid-column: 2/5;
+}
+.createOrgHeader h1{
+  padding-bottom: 10px;
+}
+.orgFormContainer{
+  grid-column: 2/3;
+  place-items: center;
+}
+.orgCreationLabels{
+  display: block;
+  font-weight: bold;
+  font-size: 20px;
+}
+.createOrgInputField{
+  display: block;
+  width: 75%;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border: 2px solid black;
+}
+.createOrgSelectField{
+  display: block;
+  width: 80%;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border: 2px solid black;
+}
+.createOrgButton{
+  grid-column: 3;
+  width: auto;
+  margin: 10px 0 20px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #e27602;
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 18px;
+}
+.orgImageFormContainer{
+  grid-column: 4/5;
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  place-items: center;
+}
+.dragImage{
+  border: 2px dashed black;
+  padding: 60px;
+}
+.orgImageFormContainer h3{
+  margin:20px 0;
+}
+#orgImgUpload{
+  grid-column: auto;
+}
+input[id=orgImgUpload]::file-selector-button {
+  margin-left: 80px;
+  padding: 8px;
+  border-radius: 18px;
+  background-color: #e27602;
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 14px;
+}
+input[id=orgImgUpload] {
+  color: rgba(0, 0, 0, 0)
+}
+
+/*FAQ CSS*/
+.faq-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  font-size: 1.4em;
+}
+.faq-page h1{
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.accordion-item {
+  border-bottom: 1px solid #c23304;
+}
+
+.accordion-title {
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.accordion-title:hover {
+  color: #e27602;
+}
+.accordion-title.active {
+  color: #e27602;
+  text-decoration: underline;
+}
+.accordion-content p {
+  margin: 0;
+  font-size: .8em;
+  padding-bottom: 5px;
+}
+
+/*Manage CSS*/
+.manageGrid{
+  display: grid;
+  grid-template-columns: .4fr 1fr 1fr;
+  margin: 0;
+}
+#manageNav{
+  grid-column: 1;
+  border-right: 1px solid black;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 30px;
+  height: 100vh;
+}
+#manageNavItems{
+  font-size: 1.4em;
+  margin-bottom: 75px;
+}
+#manageNavItems:hover {
+  cursor: pointer;
+  color: #e27602;
+}
+.manageContent{
+  margin: 20px 50px;
+  grid-column: 2/3;
+}
+.manageContent h1{
+  margin-bottom: 50px;
+}
+.manageContent #addOrgButton{
+  margin-left: 50px;
+}
+.manageContent #addOrgButton:hover{
+  color: #e27602;
+  cursor: pointer;
+}
+.create-organization-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+.notification {
+  /* z-index to show it on top of other elements if you have other modals. */
+  z-index: 100;
+  position: fixed;
+  bottom: 3rem;
+  left: 30vw;
+  width: 50vw;
+  height: 8vh;
+
+  background-color: #808080;
+  color: #ffffff;
+}
+/*Event Creation CSS*/
+.createEventContainer{
+  padding-top: 30px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+.createEventHeader{
+  text-align: center;
+  grid-column: 2/5;
+}
+.createEventHeader h1{
+  padding-bottom: 10px;
+}
+.eventFormContainer{
+  grid-column: 2/3;
+  place-items: center;
+}
+.eventCreationLabels{
+  display: block;
+  font-weight: bold;
+  font-size: 20px;
+}
+.createEventInputField{
+  display: block;
+  width: 75%;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border: 2px solid black;
+}
+.createEventSelectField{
+  display: block;
+  width: 80%;
+  margin-top: 5px;
+  padding: 8px;
+  border-radius: 15px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  border: 2px solid black;
+}
+.createEventButton{
+  grid-column: 3;
+  width: auto;
+  margin: 10px 0 20px;
+  padding: 10px;
+  border-radius: 20px;
+  background-color: #e27602;
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 18px;
+}
+.eventImageFormContainer{
+  grid-column: 4/5;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  place-items: center;
+}
+.dragImage{
+  border: 2px dashed black;
+  padding: 60px;
+}
+.eventImageFormContainer h3{
+  margin:20px 0;
+}
+#eventImgUpload{
+  grid-column: auto;
+}
+input[id=eventImgUpload]::file-selector-button {
+  margin-left: 80px;
+  padding: 8px;
+  border-radius: 18px;
+  background-color: #e27602;
+  color: white;
+  border: 2px solid black;
+  cursor: pointer;
+  font-size: 14px;
+}
+input[id=eventImgUpload] {
+  color: rgba(0, 0, 0, 0)
+}
+.eventDescriptionContainer {
+  padding-top: 30px;
+  text-align: left;
+}
+
+.organization-box {
+  border: 2px solid black;
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+  width: 200px;
+  text-align: center;
+}
+
+.organization-container {
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden; /* Hide the overflow to prevent scrollbars from appearing */
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  background-color: #e27602;
+  border: 1px solid black;
+  z-index: 1;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.organization-list {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-left: 30px; /* Add padding to the left to account for the left button */
+  padding-right: 30px; /* Add padding to the right to account for the right button */
+}
+.report-text {
+  font-size: 24px;
 }

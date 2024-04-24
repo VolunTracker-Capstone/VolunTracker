@@ -37,17 +37,37 @@ function OrganizationReport() {
                     <div id="manageNavItems"><FaFile/> Files</div>
                     <div id="manageNavItems"><IoIosSettings/> Settings</div>
                 </div>
-                <div className="column-md-2">
-                    <div className="orange-box">
+                <div className="column">
+                    <div className="homeRows"></div>
 
-                    <p>Total Volunteer hours worked: {totalHoursSum}</p>
+                    <div className="card" style={{width: '250px',  margin: 50, position: "relative", left: 200}}>
+                        <div className="card-body">
+                            <h5 className="card-title">Total Volunteer Hours</h5>
+                            <p className="card-text">{totalHoursSum} hours worked</p>
+                        </div>
+                    </div>
+
+                    <div className="card" style={{width: '250px', margin: 50, position: "relative", left: 200}}>
+                        <div className="card-body">
+                            <h5 >Total Volunteer impact</h5>
+                            <p > ${(totalHoursSum * 31.80).toFixed(0)}</p>
+                        </div>
+                    </div>
+                    <div className="card" style={{width: '75%',  margin: 50, position: "relative", left: 150}}>
+                        <div className="card-body" style={{}}>
+                            <h5>How we calculate it</h5>
+                            <p>We calculate this value by multiplying the volunteer hours by
+                                their estimated worth using this <a href="https://independentsector.org/sector-health/value-of-volunteer-time-methodology/">
+                                    methodology
+                                </a></p>
+                        </div>
                     </div>
                 </div>
-                <div className="column-md-3">
+                <div className="column">
+
                     <div>
-                    <p>Total Volunteer impact: ${(totalHoursSum * 31.80).toFixed(0)}</p>
-                        <p>We calculate this by taking our volunteer hours and multiplying it by the estimated national value of a
-                        volunteer hour which is $31.80</p>
+
+
                     </div>
 
                 </div>

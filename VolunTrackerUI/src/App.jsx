@@ -17,6 +17,7 @@ import OrganizationReport from "./components/organization/OrganizationReport.jsx
 import Settings from "./components/organization/Settings.jsx";
 import Organizations from "./components/organization/Organizations.jsx";
 import Events from "./components/organization/Events.jsx";
+import JoinOrg from "./components/organization/JoinOrg.jsx";
 function App() {
 
     return (
@@ -29,8 +30,8 @@ function App() {
                     {/*<Route path="/" element={<OrganizationCreation/>} />*/}
                     {/*<Route path="/create" element={<OrganizationCreation/>} />*/}
                 </Route>
-                <Route path="/report" element={<OrganizationReport/>}>
-                </Route>
+                <Route path="/report" element={<OrganizationReport/>}></Route>
+                <Route path="/organizations/:id" element={<JoinOrg/>}></Route>
                 <Route path="/Settings" element={<Settings/>}></Route>
                 <Route path="/organizations" element={<Organizations/>}></Route>
                 <Route path="/faq" element={<FAQ/>} ></Route>

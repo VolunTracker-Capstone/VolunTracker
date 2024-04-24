@@ -7,12 +7,12 @@ import { IoIosSettings } from "react-icons/io";
 import {Button} from "react-bootstrap";
 function Settings(props) {
     function handleDelete() {
-        const organizationIdToDelete = 5001; // The ID of the organization to delete
+        const organizationIdToDelete = 5002; // The ID of the organization to delete
 
-        fetch(`https://volunteerapi.azurewebsites.net/organizations/${organizationIdToDelete}`, {
+        fetch(`https://voluntrackerapi.azurewebsites.net/organizations/${organizationIdToDelete}`, {
             method: 'DELETE',
             headers: {
-                // CORS error currently
+                // Be very careful with what you delete
                 'Content-Type': 'application/json',
 
             }

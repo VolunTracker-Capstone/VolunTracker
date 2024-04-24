@@ -37,13 +37,13 @@ function OrganizationReport() {
                     <div id="manageNavItems"><FaFile/> Files</div>
                     <div id="manageNavItems"><IoIosSettings/> Settings</div>
                 </div>
-                <div className="column">
+                <div className="column-md-2">
                     <div className="orange-box">
 
                     <p>Total Volunteer hours worked: {totalHoursSum}</p>
                     </div>
                 </div>
-                <div className="column">
+                <div className="column-md-3">
                     <div>
                     <p>Total Volunteer impact: ${(totalHoursSum * 31.80).toFixed(0)}</p>
                         <p>We calculate this by taking our volunteer hours and multiplying it by the estimated national value of a

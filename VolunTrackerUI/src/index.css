@@ -447,7 +447,51 @@ input[id=eventImgUpload]::file-selector-button {
 input[id=eventImgUpload] {
   color: rgba(0, 0, 0, 0)
 }
-.eventDescriptionContainer{
+.eventDescriptionContainer {
   padding-top: 30px;
   text-align: left;
+}
+
+.organization-box {
+  border: 2px solid black;
+  background-color: white;
+  padding: 20px;
+  margin: 20px;
+  width: 200px;
+  text-align: center;
+}
+
+.organization-container {
+  position: relative;
+  margin-bottom: 20px;
+  overflow: hidden; /* Hide the overflow to prevent scrollbars from appearing */
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  color: white;
+  background-color: #e27602;
+  border: 1px solid black;
+  z-index: 1;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.organization-list {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding-left: 30px; /* Add padding to the left to account for the left button */
+  padding-right: 30px; /* Add padding to the right to account for the right button */
 }

@@ -1,30 +1,37 @@
 import React, {useState, useEffect} from "react";
-
-
-import { CiCirclePlus } from "react-icons/ci";
 import { MdSpaceDashboard } from "react-icons/md";
 import { MdPeopleAlt } from "react-icons/md";
 import { BsClipboard2DataFill } from "react-icons/bs";
 import { FaFile } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
+import {Button} from "react-bootstrap";
+function Settings(props) {
+    function handleDelete() {
+        const organizationIdToDelete = 5001; // The ID of the organization to delete
 
-function OrganizationReport() {
-    const [totalHoursSum, setTotalHoursSum] = useState(0);
-    useEffect(() => {
-        fetch('https://voluntrackerapi.azurewebsites.net/organizations/100/members')
-            .then(response => response.json())
-            .then(data => {
-                const sum = data.reduce((acc, member) => acc + member.hoursWorked, 0);
-                setTotalHoursSum(sum);
-                let impact;
-                impact = sum * 31.80;
+        fetch(`https://volunteerapi.azurewebsites.net/organizations/${organizationIdToDelete}`, {
+            method: 'DELETE',
+            headers: {
+                // CORS error currently
+                'Content-Type': 'application/json',
+
+            }
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                }
+                throw new Error('Network response was not ok.');
             })
-            .catch(error => console.error('Error fetching data:', error));
-    }, []);
-
+            .then(data => {
+                console.log('Organization deleted:', data);
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+    }
 
     return (
-
         <div className="home">
             <div className="row justify-content-center mb-3">
                 <h2>Organization Name</h2>
@@ -38,25 +45,20 @@ function OrganizationReport() {
                     <div id="manageNavItems"><IoIosSettings/> Settings</div>
                 </div>
                 <div className="column">
-                    <div className="orange-box">
-
-                    <p>Total Volunteer hours worked: {totalHoursSum}</p>
-                    </div>
+                    <p>Settings</p>
+                    <p>Do you wish to delete the organization?</p>
+                    <Button onClick={handleDelete}>Delete Organization</Button>
                 </div>
                 <div className="column">
                     <div>
-                    <p>Total Volunteer impact: ${(totalHoursSum * 31.80).toFixed(0)}</p>
-                        <p>We calculate this by taking our volunteer hours and multiplying it by the estimated national value of a
-                        volunteer hour which is $31.80</p>
+<p> HEllo</p>
                     </div>
 
                 </div>
             </div>
         </div>
+
     );
 }
 
-export default OrganizationReport;
-// TotalMember
-// How it's calculated
-// Delete organization for settings
+export default Settings;

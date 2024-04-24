@@ -13,9 +13,10 @@ import FAQ from "./components/FAQ.jsx";
 import Manage from "./components/Manage.jsx";
 import EventCreation from "./components/organization/EventCreation.jsx";
 import NotificationTest from "./components/NotificationTest.jsx";
+import OrganizationReport from "./components/organization/OrganizationReport.jsx";
+import Settings from "./components/organization/Settings.jsx";
 import Organizations from "./components/organization/Organizations.jsx";
 import Events from "./components/organization/Events.jsx";
-
 function App() {
 
     return (
@@ -24,10 +25,13 @@ function App() {
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/about" element={<AboutUs/>} />
-                <Route path="/organizations/create" element={<OrganizationCreation/>}>
+                <Route path="/organization/create" element={<OrganizationCreation/>}>
                     {/*<Route path="/" element={<OrganizationCreation/>} />*/}
                     {/*<Route path="/create" element={<OrganizationCreation/>} />*/}
                 </Route>
+                <Route path="/report" element={<OrganizationReport/>}>
+                </Route>
+                <Route path="/Settings" element={<Settings/>}></Route>
                 <Route path="/organizations" element={<Organizations/>}></Route>
                 <Route path="/faq" element={<FAQ/>} ></Route>
                 <Route path="/events/create" element={<EventCreation/>} />

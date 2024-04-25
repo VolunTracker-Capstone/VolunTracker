@@ -18,7 +18,6 @@ import Settings from "./components/organization/Settings.jsx";
 import Organizations from "./components/organization/Organizations.jsx";
 import Events from "./components/organization/Events.jsx";
 import { AuthContextProvider } from './components/user/AuthContext.jsx';
-import useAuth from "./components/user/useAuth.jsx";
 
 function App() {
     return (

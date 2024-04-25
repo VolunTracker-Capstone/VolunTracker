@@ -12,6 +12,7 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [hash, setHash] = useState('');
+    const [error, setError] = useState('');
     const { jwt, login, logout, isAuthenticated } = useAuth();
 
     const handleSubmit = (e) => {
@@ -35,7 +36,8 @@ function Login() {
                 const jwt = await response.text();
 
                 if (!response.ok) {
-                    const error = (jwt && jwt.message) || response.status;
+                    const error = (jwt && jwt.message) || 'An error occurred';
+                    setError(error);
                     return Promise.reject(error);
                 }
 
@@ -78,6 +80,7 @@ function Login() {
                             className="login-input-field"
                         />
                     </div>
+                    {error && <div style={{ color: 'red' }}>Incorrect email/password. Try again.</div>}
                     <div className="login-button-container">
                         <button type="submit" className="login-button">Login</button>
                     </div>

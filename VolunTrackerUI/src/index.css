@@ -59,25 +59,18 @@ body {
 
 
 /*Home CSS*/
-.column {
-  flex: 1;
-  text-align: center;
-  padding: 10px
-}
-.column2 {
+.column{
   flex: 1;
   text-align: center;
   padding: 10px;
-  margin-left: 60px;
-  margin-right: 60px;
-  font-size: 1.2em
+
 }
 .home {
-  justify-content: space-between;
+  /*justify-content: space-between;*/
   margin-bottom: 25px;
   display: flex;
   flex-direction: column;
-  align-items: center
+  align-items: center;
 }
 .iconTitles {
   font-size: 2.5rem;
@@ -88,7 +81,9 @@ body {
   display: flex;
   width: 100%
 }
-.button {
+.homeButton {
+  display: flex;
+  width: max-content;
   font-size: 1.2rem;
   background: #e27602;
   color: #fff;
@@ -97,11 +92,14 @@ body {
   border: 1px solid black;
   text-decoration: none;
 }
-.button:hover {
+.homeButton:hover {
   color: #e27602;
   background: #ffffff;
   cursor: pointer;
   border: 1px solid #e27602;
+}
+.home p{
+  padding-top: 10px;
 }
 
 
@@ -496,4 +494,158 @@ input[id=eventImgUpload] {
 
 .report-text {
   font-size: 24px;
+}
+
+
+@media only screen and (max-width: 328px) {
+  /*About CSS*/
+  .card{
+    font-size: .8em;
+  }
+
+}
+@media only screen and (max-width: 480px) {
+  /*About CSS*/
+  .card{
+    font-size: .9em;
+  }
+}
+@media only screen and (max-width: 768px) {
+  /*About CSS*/
+  .card{
+    font-size: 1.1em;
+  }
+  /*FAQ CSS*/
+}
+
+@media only screen and (max-width: 992px) {
+  /*About CSS*/
+  .aboutCards{
+    gap: 30px;
+  }
+  /*Organization CSS*/
+  .createOrgContainer{
+    grid-template-columns: .5fr 1fr .5fr;
+    font-size: .95em;
+  }
+  .createOrgHeader{
+    grid-column: 2;
+    margin-bottom: 20px;
+  }
+  .orgFormContainer{
+    grid-column: 2;
+  }
+  .createOrgButton{
+    grid-column: 2;
+  }
+  .orgImageFormContainer{
+    grid-column: 2;
+  }
+  .orgCreationLabels{
+    font-size: 18px;
+  }
+  .createOrgInputField{
+    width: 100%;
+  }
+  .createOrgSelectField{
+    width: 105%;
+  }
+  /*Event CSS*/
+  .createEventContainer{
+    grid-template-columns: .5fr 1fr .5fr;
+    font-size: .95em;
+  }
+  .createEventHeader{
+    grid-column: 2;
+    margin-bottom: 20px;
+  }
+  .eventFormContainer{
+    grid-column: 2;
+  }
+  .createEventButton{
+    grid-column: 2;
+  }
+  .eventImageFormContainer{
+    grid-column: 2;
+  }
+  .eventCreationLabels{
+    font-size: 18px;
+  }
+  .createEventInputField{
+    width: 100%;
+  }
+  .createEventSelectField{
+    width: 105%;
+  }
+  /*FAQ CSS*/
+  .faq-page{
+    font-size: 1em;
+  }
+  /*Home CSS*/
+  .homeRows {
+    flex-direction: column;
+  }
+  .column {
+    margin-bottom: 20px;
+  }
+  .column2 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+
+  /*.column {*/
+  /*  flex: 1;*/
+  /*  text-align: center;*/
+  /*  padding: 10px*/
+  /*}*/
+  /*.column2 {*/
+  /*  flex: 1;*/
+  /*  text-align: center;*/
+  /*  padding: 10px;*/
+  /*  margin-left: 60px;*/
+  /*  margin-right: 60px;*/
+  /*  font-size: 1.2em*/
+  /*}*/
+  /*.home {*/
+  /*  justify-content: space-between;*/
+  /*  margin-bottom: 25px;*/
+  /*  display: flex;*/
+  /*  flex-direction: column;*/
+  /*  align-items: center*/
+  /*}*/
+  /*.iconTitles {*/
+  /*  font-size: 2.5rem;*/
+  /*  color: #c23304;*/
+  /*  font-weight: 700*/
+  /*}*/
+  /*.homeRows {*/
+  /*  display: flex;*/
+  /*  width: 100%*/
+  /*}*/
+  /*.button {*/
+  /*  font-size: 1.2rem;*/
+  /*  background: #e27602;*/
+  /*  color: #fff;*/
+  /*  padding: 10px 50px;*/
+  /*  border-radius: 20px;*/
+  /*  border: 1px solid black;*/
+  /*  text-decoration: none;*/
+  /*}*/
+  /*.button:hover {*/
+  /*  color: #e27602;*/
+  /*  background: #ffffff;*/
+  /*  cursor: pointer;*/
+  /*  border: 1px solid #e27602;*/
+  /*}*/
+}
+@media only screen and (max-width: 1200px) {
+  /*About CSS*/
+  .aboutCards{
+    flex-flow: column;
+    gap: 50px;
+  }
+  .card{
+    max-width: 95%;
+  }
 }

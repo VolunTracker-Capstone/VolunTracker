@@ -19,8 +19,7 @@ function Login() {
         e.preventDefault();
         const pwd = SHA256(password).toString();
         setHash(pwd);
-        console.log("Handling submit...");
-        console.log(pwd);
+
         const data = {
             'email': email,
             'password': pwd,
@@ -48,11 +47,6 @@ function Login() {
             .catch(error => {
                 console.error('There was an error!', error);
             });
-
-        console.log('Email:', email);
-        console.log('Password:', password);
-        console.log('HashPassword', hash);
-        console.log('Request Data:', data);
     };
 
     return (

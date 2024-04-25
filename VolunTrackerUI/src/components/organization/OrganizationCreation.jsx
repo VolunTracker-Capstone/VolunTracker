@@ -6,6 +6,7 @@ import useAuth from "../user/useAuth.jsx";
 
 function OrganizationCreation(){
     let url = "https://voluntrackerapi.azurewebsites.net/organizations";
+    let postUjoUrl = "https://voluntrackerapi.azurewebsites.net/UserJoinsOrg";
     let navigate = useNavigate();
     let path = "/manage";
 
@@ -16,6 +17,7 @@ function OrganizationCreation(){
     const [state, setState] = useState('');
     const [zip, setZip] = useState('');
     const [website, setWebsite] = useState('');
+    const [description, setDescription] = useState('');
     const [orgImg, setOrgImg] = useState('');
     const { jwt, login, logout, isAuthenticated } = useAuth();
 
@@ -23,13 +25,27 @@ function OrganizationCreation(){
         e.preventDefault();
         fetch(url, requestOptions)
             .then(async response => {
-                const data = await response.text();
+                const data = await response.json();
+                console.log(data);
                 // check for error response
                 if (!response.ok) {
                     // get error message from body or default to response status
                     const error = (data && data.message) || response.status;
                     return Promise.reject(error);
                 }
+                const currentDate = new Date().toISOString();
+                const ujoData = {
+                    'memberID': userInfo.memberID,
+                    'orgID': data.organizationID,
+                    'hoursWorked': 0,
+                    'role': 'admin',
+                    'joinDate': currentDate
+                };
+                fetch(postUjoUrl, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify(ujoData)
+                })
                 navigate(path);
             })
             .catch(error => {
@@ -37,12 +53,6 @@ function OrganizationCreation(){
             });
         setTimeout(() => {console.log("Loading");
         }, 500);
-        console.log('Organization Name:', name);
-        console.log('Organization Street:', street);
-        console.log('Organization City:', city);
-        console.log('Organization State:', state);
-        console.log('Organization Zip:', zip);
-        console.log('Organization Website:', website);
     };
 
     useEffect(() => {
@@ -71,7 +81,8 @@ function OrganizationCreation(){
         'city': city,
         'state': state,
         'zip': zip,
-        'website': website
+        'website': website,
+        'description': description
     };
 
     const requestOptions = {
@@ -148,6 +159,16 @@ function OrganizationCreation(){
                             type="text"
                             value={website}
                             onChange={(e) => setWebsite(e.target.value)}
+                            required
+                            className="createOrgInputField"
+                        />
+                    </div>
+                    <div className="input-container">
+                        <label className="orgCreationLabels">Description:</label>
+                        <input
+                            type="text"
+                            value={description}
+                            onChange={(e) => setDescription(e.target.value)}
                             required
                             className="createOrgInputField"
                         />

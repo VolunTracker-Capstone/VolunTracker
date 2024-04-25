@@ -101,7 +101,7 @@ function Organizations() {
                     <button className="scroll-button left" onClick={() => scroll('left', listRefAll)}>&lt;</button>
                     <div className="organization-list" ref={listRefAll}>
                         {allOrganizations.map(org => (
-                            <OrganizationBlock key={org.id} name={org.name} />
+                            <OrganizationBlock key={org.id} name={org.name} organizationID={org.organizationID} description={org.description}/>
                         ))}
                     </div>
                     <button className="scroll-button right" onClick={() => scroll('right', listRefAll)}>&gt;</button>

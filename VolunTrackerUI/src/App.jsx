@@ -18,6 +18,7 @@ import Settings from "./components/organization/Settings.jsx";
 import Organizations from "./components/organization/Organizations.jsx";
 import Events from "./components/organization/Events.jsx";
 import { AuthContextProvider } from './components/user/AuthContext.jsx';
+import OrganizationDetails from "./components/organization/OrganizationDetails.jsx";
 
 function App() {
     return (
@@ -35,6 +36,7 @@ function App() {
                 </Route>
                 <Route path="/Settings" element={<Settings/>}></Route>
                 <Route path="/organizations" element={<Organizations/>}></Route>
+                <Route path="/organizations/:organizationId" element={<OrganizationDetails/>}></Route>
                 <Route path="/faq" element={<FAQ/>} ></Route>
                 <Route path="/events/create" element={<EventCreation/>} />
                 <Route path="/events" element={<Events/>} />

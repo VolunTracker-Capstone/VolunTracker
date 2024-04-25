@@ -20,10 +20,15 @@ function Manage() {
     let url = "https://voluntrackerapi.azurewebsites.net/organizations";
     let navigate = useNavigate();
     let path = "/organizations/create";
+    let pathUnauthenticated = "/user/login";
 
     function handleSubmit(e) {
         e.preventDefault();
-        navigate(path);
+        if (isAuthenticated()) {
+            navigate(path);
+        } else {
+            navigate(pathUnauthenticated);
+        }
     }
 
     const loadOrganizations = () => {

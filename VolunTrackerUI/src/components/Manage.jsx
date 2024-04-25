@@ -5,11 +5,11 @@ import { MdPeopleAlt } from "react-icons/md";
 import { BsClipboard2DataFill } from "react-icons/bs";
 import { FaFile } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
-
 import React, { useEffect, useState } from 'react';
 import {useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import useAuth from "./user/useAuth.jsx";
+import {Link} from "react-router-dom";
 
 function Manage() {
     const [userInfo, setUserInfo] = useState({});
@@ -91,12 +91,12 @@ function Manage() {
         <>
         <div className="manageGrid">
             <div id="manageNav">
-                <div id="manageNavItems"><MdSpaceDashboard /> Dashboard</div>
-                <div id="manageNavItems"><MdPeopleAlt/> Organization</div>
-                <div id="manageNavItems"><BsClipboard2DataFill/> Reports</div>
-                <div id="manageNavItems"><FaFile/> Files</div>
-                <div id="manageNavItems"><IoIosSettings/> Settings</div>
-            </div>
+                <Link to="../faq"> <div id="manageNavItems"><MdSpaceDashboard /> Dashboard</div></Link>
+                <Link to="../faq">   <div id="manageNavItems"><MdPeopleAlt/> Organization</div></Link>
+                <Link to="../faq">    <div id="manageNavItems"><BsClipboard2DataFill/> Reports</div></Link>
+                <Link to="../faq">  <div id="manageNavItems"><FaFile/> Files</div></Link>
+                <Link to="../faq">  <div id="manageNavItems"><IoIosSettings/> Settings</div></Link>
+</div>
             <div className="manageContent">
                 <h1>Administered Organizations</h1>
                 {memberOrganizations.length > 0 && isAuthenticated() ? (

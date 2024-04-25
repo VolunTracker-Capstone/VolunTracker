@@ -108,21 +108,35 @@ function EventDetails() {
 
     const checkIn = (e) => {
         e.preventDefault();
+        const currentDate = new Date().toISOString();
         let checkInUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}/checkIn`;
-
+        let requestBody = {
+            datetime: currentDate
+        }
+        console.log(requestBody);
+        fetch(checkInUrl, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(requestBody)
+        })
         setCheckedIn(true);
 
     }
 
-    const handleCheckInOrOut = (e) => {
-        if (!checkedIn){
-            e.preventDefault();
-            checkIn();
-            setCheckedIn(true);
-        } else {
-            e.preventDefault();
-            checkOut();
+    const checkOut = (e) => {
+        e.preventDefault();
+        const currentDate = new Date().toISOString();
+        let checkInUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}/checkOut`;
+        let requestBody = {
+            datetime: currentDate
         }
+        console.log(requestBody);
+        fetch(checkInUrl, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(requestBody)
+        })
+        setCheckedOut(true);
     }
 
     function leaveEvent(){
@@ -181,11 +195,19 @@ function EventDetails() {
                 <p><strong>Volunteers Needed:</strong> {eventInfo.volunteersNeeded}</p>
             </div>
             {userInEvent ? (
-                <div>
-                    <p>Please check in upon arrival.</p>
-                    <button onClick={handleSubmit} type="submit" className="leave-event-button">Leave Event</button>
-                    <button onClick={checkedIn} type="submit" style={{marginLeft: "10px"}} className="checkIn-event-button">Check In</button>
-                </div>
+                checkedOut ? (
+                    <div>completed event</div>
+                ) : (
+                    <div>
+                        <p>Please check in upon arrival.</p>
+                        <button onClick={handleSubmit} type="submit" className="leave-event-button">Leave Event</button>
+                        {!checkedIn ? (
+                            <button onClick={checkIn} type="submit" style={{marginLeft: "10px"}} className="checkIn-event-button">Check In</button>
+                        ) : (
+                            <button onClick={checkOut} type="submit" style={{marginLeft: "10px"}} className="checkOut-event-button">Check Out</button>
+                        )}
+                    </div>
+                )
             ) : (
                 <div>
                     <p>Please Join!</p>

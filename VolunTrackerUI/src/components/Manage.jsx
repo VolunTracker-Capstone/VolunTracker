@@ -94,7 +94,7 @@ function Manage() {
             </div>
             <div className="manageContent">
                 <h1>Administered Organizations</h1>
-                {memberOrganizations.length > 0 && isAuthenticated()? (
+                {memberOrganizations.length > 0 && isAuthenticated() ? (
                     <ul>
                         {memberOrganizations.map(org => (
                             <li key={org.id}>

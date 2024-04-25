@@ -39,7 +39,7 @@ function Navbar() {
                 <NavItemLink to='/organizations' text='Organizations' />
                 <NavItemLink to='/events' text='Events' />
                 <NavItemLink to='/manage' text='Manage' />
-                {jwt === null ? <NavItemLink to='/user/login' text='Login' /> : <button className="nav-link" onClick={handleLogout}>Logout</button>}
+                {jwt === null ? <NavItemLink to='/user/login' text='Login' /> : <button className="nav-link" onClick={handleLogout} style={{ fontSize: 24, border: 'none', background: 'none', color: 'white', cursor: 'pointer'}}>Logout</button>}
             </div>
         </Nav>
     );

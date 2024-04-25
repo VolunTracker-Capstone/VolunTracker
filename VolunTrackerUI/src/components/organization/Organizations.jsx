@@ -80,16 +80,20 @@ function Organizations() {
     return (
         <div>
             <div>
-                <h2>Joined Organizations:</h2>
-                <div className="organization-container">
-                    <button className="scroll-button left" onClick={() => scroll('left', listRefJoined)}>&lt;</button>
-                    <div className="organization-list" ref={listRefJoined}>
-                        {userOrganizations.map(org => (
-                            <OrganizationBlock key={org.id} name={org.name} />
-                        ))}
-                    </div>
-                    <button className="scroll-button right" onClick={() => scroll('right', listRefJoined)}>&gt;</button>
-                </div>
+                {isAuthenticated() && (
+                    <>
+                        <h2>Joined Organizations:</h2>
+                        <div className="organization-container">
+                            <button className="scroll-button left" onClick={() => scroll('left', listRefJoined)}>&lt;</button>
+                            <div className="organization-list" ref={listRefJoined}>
+                                {userOrganizations.map(org => (
+                                    <OrganizationBlock key={org.id} name={org.name} />
+                                ))}
+                            </div>
+                            <button className="scroll-button right" onClick={() => scroll('right', listRefJoined)}>&gt;</button>
+                        </div>
+                    </>
+                )}
             </div>
             <div>
                 <h2>All Organizations:</h2>

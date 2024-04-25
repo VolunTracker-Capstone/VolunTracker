@@ -14,6 +14,9 @@ function EventDetails() {
     const { jwt, login, logout, isAuthenticated } = useAuth();
     const [userInfo, setUserInfo] = useState({});
     const [userInEvent, setUserInEvent] = useState(false);
+    const [checkedIn, setCheckedIn] = useState(false);
+    const [checkedOut, setCheckedOut] = useState(false);
+    const [eventInfo, setEventInfo] = useState({});
 
 
     async function isUserInEvent(){
@@ -28,6 +31,38 @@ function EventDetails() {
         }
         return false;
     }
+
+    useEffect(() => {
+        async function fetchData() {
+            let eventInfoUrl = `https://voluntrackerapi.azurewebsites.net/events/${eventID}`;
+            let eventInfoResponse = await fetch(eventInfoUrl);
+            let eventInfoJson = await eventInfoResponse.json();
+            const eventDate = new Date(eventInfoJson.date);
+            const formattedDate = eventDate.toLocaleString('en-US', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true
+            });
+            let formattedEventInfo = {
+                city: eventInfoJson.city,
+                date: formattedDate,
+                eventID: eventInfoJson.eventID,
+                eventImage: eventInfoJson.eventImage,
+                eventOwnerID: eventInfoJson.eventOwnerID,
+                name: eventInfoJson.name,
+                state: eventInfoJson.state,
+                street: eventInfoJson.street,
+                volunteersNeeded: eventInfoJson.volunteersNeeded,
+                zip: eventInfoJson.zip,
+            }
+            setEventInfo(formattedEventInfo);
+        }
+        fetchData();
+    }, []);
 
     useEffect(() => {
         const token = jwt;
@@ -71,8 +106,26 @@ function EventDetails() {
         }
     };
 
-    function leaveEvent(){
+    const checkIn = (e) => {
+        e.preventDefault();
+        let checkInUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}/checkIn`;
 
+        setCheckedIn(true);
+
+    }
+
+    const handleCheckInOrOut = (e) => {
+        if (!checkedIn){
+            e.preventDefault();
+            checkIn();
+            setCheckedIn(true);
+        } else {
+            e.preventDefault();
+            checkOut();
+        }
+    }
+
+    function leaveEvent(){
         const deleteUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}`;
         fetch(deleteUrl, {
             method: 'DELETE',
@@ -85,7 +138,6 @@ function EventDetails() {
                     return Promise.reject(error);
                 }
                 console.log('Leave successful');
-                navigate(path);
             })
             .catch(error => {
                 console.error('There was an error!', error);
@@ -113,7 +165,6 @@ function EventDetails() {
                     return Promise.reject(error);
                 }
                 console.log('Join successful');
-                navigate(path);
             })
             .catch(error => {
                 console.error('There was an error!', error);
@@ -122,20 +173,26 @@ function EventDetails() {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
-                <h2>Event Details: {name}</h2>
-                {userInEvent ? (
-                    <div>
-                        <p>Please check in upon arrival.</p>
-                        <button type="submit" className="leave-event-button">Leave Event</button>
-                    </div>
-                ) : (
-                    <div>
-                        <p>Please Join!</p>
-                        <button type="submit" className="join-event-button">Join Event</button>
-                    </div>
-                )}
-            </form>
+
+            <h2>Event Details: {name}</h2>
+            <div>
+                <p><strong>Date:</strong> {eventInfo.date}</p>
+                <p><strong>Location:</strong> {eventInfo.street}, {eventInfo.city}, {eventInfo.state}, {eventInfo.zip}</p>
+                <p><strong>Volunteers Needed:</strong> {eventInfo.volunteersNeeded}</p>
+            </div>
+            {userInEvent ? (
+                <div>
+                    <p>Please check in upon arrival.</p>
+                    <button onClick={handleSubmit} type="submit" className="leave-event-button">Leave Event</button>
+                    <button onClick={checkedIn} type="submit" style={{marginLeft: "10px"}} className="checkIn-event-button">Check In</button>
+                </div>
+            ) : (
+                <div>
+                    <p>Please Join!</p>
+                    <button onClick={handleSubmit} type="submit" className="join-event-button">Join Event</button>
+                </div>
+            )}
+
         </div>
     );
 }

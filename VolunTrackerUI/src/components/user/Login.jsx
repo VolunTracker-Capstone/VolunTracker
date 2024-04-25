@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import {useEffect, useState} from 'react'
 import '../../App.css'
 import {Link, useNavigate} from "react-router-dom";
 import SHA256 from 'crypto-js/sha256';
 import useAuth from "./useAuth.jsx";
+import {useUserOrganizations} from "./UserOrganizationsContext.jsx";
+
 
 function Login() {
     let url = "https://voluntrackerapi.azurewebsites.net/Login";
@@ -14,6 +16,8 @@ function Login() {
     const [hash, setHash] = useState('');
     const [error, setError] = useState('');
     const { jwt, login, logout, isAuthenticated } = useAuth();
+    const { userOrganizations, setUserOrganizations } = useUserOrganizations();
+    const [userInfo, setUserInfo] = useState({});
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -42,12 +46,48 @@ function Login() {
 
                 login(jwt);
                 console.log('Login successful:', jwt);
+                const token = jwt;
+                if (token) {
+                    const decodedToken = parseJwt(token);
+                    setUserInfo(decodedToken);
+                }
+                const fetchData = async () => {
+                    const allOrgsResponse = await fetch(url);
+                    const allOrgData = await allOrgsResponse.json();
+
+                    let userOrgs = [];
+                    for (let i = 0; i < allOrgData.length; i++) {
+                        let url2 = `https://voluntrackerapi.azurewebsites.net/organizations/${allOrgData[i].organizationID}/members`;
+                        const orgMembersResponse = await fetch(url2);
+                        const orgMembersData = await orgMembersResponse.json();
+                        for (let j = 0; j < orgMembersData.length; j++) {
+                            if (String(orgMembersData[j].memberID) === String(userInfo.memberID)) {
+                                userOrgs.push(allOrgData[i]);
+                                break;
+                            }
+                        }
+                    }
+                    setUserOrganizations(userOrgs);
+                }
+                fetchData();
                 navigate(path);
             })
             .catch(error => {
                 console.error('There was an error!', error);
             });
     };
+
+    function parseJwt(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(
+            atob(base64)
+                .split('')
+                .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                .join('')
+        );
+        return JSON.parse(jsonPayload);
+    }
 
     return (
         <div className="login-container">

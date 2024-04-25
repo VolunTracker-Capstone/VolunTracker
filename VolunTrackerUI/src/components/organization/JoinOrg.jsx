@@ -1,27 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useParams } from 'react-router-dom';
 import {Button} from "react-bootstrap";
 import { useEffect } from 'react';
 
 function JoinOrg(props) {
-            const { id } = useParams();
-    // This pulls id from the url
-    useEffect(() => {
-        console.log(id);
-    }, [id]);
-    // This will log the id when it changes
+    const { id } = useParams();
+    const [orgName, setOrgName] = useState('');
 
-    function HandleOrg(){
-        console.log(id)
+    useEffect(() => {
+        fetch(`https://voluntrackerapi.azurewebsites.net/organizations/${id}`)
+            .then(response => response.json())
+            .then(data => {
+                setOrgName(data.name);
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    }, [id]);
+
+    function HandleOrg() {
+    console.log(id)
     }
-    // function to click for id
+
     return (
         <div>
-            <h1>Join Org Name</h1>
-            <Button onClick={HandleOrg}>Handle Org</Button>
-
+            <h1>Would you like to join {orgName}?</h1>
+            <button onClick={HandleOrg}>Handle Org</button>
         </div>
     );
 }
+
+
 
 export default JoinOrg;

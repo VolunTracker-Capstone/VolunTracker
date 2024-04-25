@@ -2,6 +2,7 @@ import { useState } from 'react'
 import '../../App.css'
 import {Link, useNavigate} from "react-router-dom";
 import SHA256 from 'crypto-js/sha256';
+import useAuth from "./useAuth.jsx";
 
 function Login() {
     let url = "https://voluntrackerapi.azurewebsites.net/Login";
@@ -11,43 +12,45 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [hash, setHash] = useState('');
+    const { jwt, login, logout, isAuthenticated } = useAuth();
 
     const handleSubmit = (e) => {
-        const hash = SHA256(password).toString();
-        setHash(SHA256(password).toString());
-        console.log("We are at least here")
         e.preventDefault();
-        fetch(url, requestOptions)
+        const pwd = SHA256(password).toString();
+        setHash(pwd);
+        console.log("Handling submit...");
+        console.log(pwd);
+        const data = {
+            'email': email,
+            'password': pwd,
+        };
+
+        fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
             .then(async response => {
-                const data = await response.text();
-                // check for error response
+                console.log('Response status:', response.status);
+                const jwt = await response.text();
+
                 if (!response.ok) {
-                    // get error message from body or default to response status
-                    const error = (data && data.message) || response.status;
+                    const error = (jwt && jwt.message) || response.status;
                     return Promise.reject(error);
                 }
-                localStorage.setItem("jwt", data);
-                console.log(data);
+
+                login(jwt);
+                console.log('Login successful:', jwt);
                 navigate(path);
             })
             .catch(error => {
                 console.error('There was an error!', error);
             });
-        setTimeout(() => {console.log("Loading");
-        }, 500);
+
         console.log('Email:', email);
         console.log('Password:', password);
         console.log('HashPassword', hash);
-        console.log(data);
-    };
-    const data = {
-        'email': email,
-        'password': hash,
-    }
-    const requestOptions = {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify(data)
+        console.log('Request Data:', data);
     };
 
     return (

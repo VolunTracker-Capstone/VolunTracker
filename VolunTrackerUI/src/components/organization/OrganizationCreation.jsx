@@ -2,6 +2,7 @@ import '../../App.css'
 import React, {useEffect, useState} from "react";
 import { FiUpload } from "react-icons/fi";
 import {useNavigate} from "react-router-dom";
+import useAuth from "../user/useAuth.jsx";
 
 function OrganizationCreation(){
     let url = "https://voluntrackerapi.azurewebsites.net/organizations";
@@ -16,6 +17,8 @@ function OrganizationCreation(){
     const [zip, setZip] = useState('');
     const [website, setWebsite] = useState('');
     const [orgImg, setOrgImg] = useState('');
+    const { jwt, login, logout, isAuthenticated } = useAuth();
+
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch(url, requestOptions)
@@ -43,7 +46,7 @@ function OrganizationCreation(){
     };
 
     useEffect(() => {
-        const token = localStorage.getItem('jwt');
+        const token = jwt;
         if (token) {
             const decodedToken = parseJwt(token);
             setUserInfo(decodedToken);

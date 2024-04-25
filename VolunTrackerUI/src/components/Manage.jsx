@@ -9,11 +9,13 @@ import { IoIosSettings } from "react-icons/io";
 import React, { useEffect, useState } from 'react';
 import {useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
+import useAuth from "./user/useAuth.jsx";
 
 function Manage() {
     const [userInfo, setUserInfo] = useState({});
     const [allOrganizations, setAllOrganizations] = useState([]);
     const [memberOrganizations, setMemberOrganizations] = useState([]);
+    const { jwt, login, logout, isAuthenticated } = useAuth();
 
     let url = "https://voluntrackerapi.azurewebsites.net/organizations";
     let navigate = useNavigate();
@@ -35,7 +37,7 @@ function Manage() {
                     return Promise.reject(error);
                 }
                 console.log(data);
-                let currentUserID = parseJwt(localStorage.getItem("jwt"));
+                let currentUserID = parseJwt(jwt);
                 console.log(currentUserID.memberID);
                 let orgs = [];
                 for (let i = 0; i < data.length; i++){
@@ -61,7 +63,7 @@ function Manage() {
 
 
     useEffect(() => {
-        const token = localStorage.getItem('jwt');
+        const token = jwt;
         if (token) {
             const decodedToken = parseJwt(token);
             setUserInfo(decodedToken);
@@ -92,7 +94,7 @@ function Manage() {
             </div>
             <div className="manageContent">
                 <h1>Administered Organizations</h1>
-                {memberOrganizations.length > 0 ? (
+                {memberOrganizations.length > 0 && isAuthenticated()? (
                     <ul>
                         {memberOrganizations.map(org => (
                             <li key={org.id}>

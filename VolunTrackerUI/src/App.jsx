@@ -17,15 +17,18 @@ import OrganizationReport from "./components/organization/OrganizationReport.jsx
 import Settings from "./components/organization/Settings.jsx";
 import Organizations from "./components/organization/Organizations.jsx";
 import Events from "./components/organization/Events.jsx";
-function App() {
+import { AuthContextProvider } from './components/user/AuthContext.jsx';
+import useAuth from "./components/user/useAuth.jsx";
 
+function App() {
     return (
+        <AuthContextProvider>
         <div>
             <NavBar/>
             <Routes>
                 <Route path="/" element={<Home/>} />
                 <Route path="/about" element={<AboutUs/>} />
-                <Route path="/organization/create" element={<OrganizationCreation/>}>
+                <Route path="/organizations/create" element={<OrganizationCreation/>}>
                     {/*<Route path="/" element={<OrganizationCreation/>} />*/}
                     {/*<Route path="/create" element={<OrganizationCreation/>} />*/}
                 </Route>
@@ -47,6 +50,7 @@ function App() {
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </div>
+        </AuthContextProvider>
     )
 }
 

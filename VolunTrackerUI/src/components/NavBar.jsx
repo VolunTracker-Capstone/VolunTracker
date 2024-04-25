@@ -4,8 +4,15 @@ import { NavLink } from 'react-router-dom';
 import { VscAccount } from 'react-icons/vsc';
 import {Link} from "react-router-dom";
 import logo from '../assets/VolunTrackerIcon.png';
+import useAuth from "./user/useAuth.jsx";
 
 function Navbar() {
+    const { jwt, login, logout, isAuthenticated } = useAuth();
+
+    const handleLogout = () => {
+        logout();
+    };
+
     return (
         <Nav className='mainNav' activeKey='/'>
             <div className='mainHeader'>
@@ -20,7 +27,7 @@ function Navbar() {
                     </Link>
                 </div>
                 <div className='column'>
-                    <Link to="/user">
+                    <Link to="/manage">
                         <VscAccount size={50} style={{ fill: 'white' }} id='userIcon' />
                     </Link>
                 </div>
@@ -32,7 +39,7 @@ function Navbar() {
                 <NavItemLink to='/organizations' text='Organizations' />
                 <NavItemLink to='/events' text='Events' />
                 <NavItemLink to='/manage' text='Manage' />
-                <NavItemLink to='/user/login' text='Login' />
+                {jwt === null ? <NavItemLink to='/user/login' text='Login' /> : <button className="nav-link" onClick={handleLogout}>Logout</button>}
             </div>
         </Nav>
     );

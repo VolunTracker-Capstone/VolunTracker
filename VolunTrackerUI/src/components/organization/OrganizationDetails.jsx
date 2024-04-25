@@ -4,7 +4,7 @@ import useAuth from "../user/useAuth.jsx";
 import {useUserOrganizations} from "../user/UserOrganizationsContext.jsx";
 
 function OrganizationDetails() {
-    let url = "https://voluntrackerapi.azurewebsites.net/UserJoinsOrg"
+    let url = "https://voluntrackerapi.azurewebsites.net/UserJoinsOrg";
     let navigate = useNavigate();
     let path = "/organizations";
     let pathUnauthenticated = "/user/login";
@@ -12,6 +12,7 @@ function OrganizationDetails() {
     const { userOrganizations, setUserOrganizations } = useUserOrganizations();
     const { jwt, login, logout, isAuthenticated } = useAuth();
     const [userInfo, setUserInfo] = useState({});
+
 
     function isUserInOrg(){
         for (let i = 0; i < userOrganizations.length; i++){
@@ -44,38 +45,66 @@ function OrganizationDetails() {
     }
 
     const handleSubmit = (e) => {
-        if (isAuthenticated()) {
+        if (isAuthenticated() && !isUserInOrg()){
             e.preventDefault();
-            const currentDate = new Date().toISOString();
-            const data = {
-                'memberID': userInfo.memberID,
-                'orgID': organizationID,
-                'hoursWorked': 0,
-                'role': 'user',
-                'joinDate': currentDate
-            };
-            fetch(url, {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify(data)
-            })
-                .then(async response => {
-                    console.log('Response status:', response.status);
-
-                    if (!response.ok) {
-                        const error = 'An error occurred';
-                        return Promise.reject(error);
-                    }
-                    console.log('Join successful');
-                    navigate(path);
-                })
-                .catch(error => {
-                    console.error('There was an error!', error);
-                });
+            joinOrganization();
+        } else if (isUserInOrg()) {
+            e.preventDefault();
+            leaveOrganization();
         } else {
             navigate(pathUnauthenticated);
         }
     };
+
+    function leaveOrganization(){
+
+        const deleteUrl = `https://voluntrackerapi.azurewebsites.net/UserJoinsOrg/${organizationID}/${userInfo.memberID}`;
+        fetch(deleteUrl, {
+            method: 'DELETE',
+        })
+            .then(async response => {
+                console.log('Response status:', response.status);
+
+                if (!response.ok) {
+                    const error = 'An error occurred';
+                    return Promise.reject(error);
+                }
+                console.log('Leave successful');
+                navigate(path);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+    }
+
+    function joinOrganization(){
+        const currentDate = new Date().toISOString();
+        const data = {
+            'memberID': userInfo.memberID,
+            'orgID': organizationID,
+            'hoursWorked': 0,
+            'role': 'user',
+            'joinDate': currentDate
+        };
+        fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
+            .then(async response => {
+                console.log('Response status:', response.status);
+
+                if (!response.ok) {
+                    const error = 'An error occurred';
+                    return Promise.reject(error);
+                }
+                console.log('Join successful');
+                navigate(path);
+            })
+            .catch(error => {
+                console.error('There was an error!', error);
+            });
+    }
 
     return (
         <div>
@@ -91,6 +120,6 @@ function OrganizationDetails() {
             </form>
         </div>
     );
-};
+}
 
 export default OrganizationDetails;

@@ -2,6 +2,7 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import OrganizationBlock from "./OrganizationBlock.jsx";
 import useAuth from "../user/useAuth.jsx";
+import {useUserOrganizations} from "../user/UserOrganizationsContext.jsx";
 
 function Organizations() {
     let url = "https://voluntrackerapi.azurewebsites.net/organizations";
@@ -9,7 +10,7 @@ function Organizations() {
     let path = "/events"
 
     const [userInfo, setUserInfo] = useState({});
-    const [userOrganizations, setUserOrganizations] = useState([]);
+    const { userOrganizations, setUserOrganizations } = useUserOrganizations();
     const [allOrganizations, setAllOrganizations] = useState([]);
     const listRefAll = useRef(null);
     const listRefJoined = useRef(null);
@@ -46,15 +47,14 @@ function Organizations() {
                         }
                     }
                 }
-                if (userOrgs.length !== userOrganizations.length) {
-                    setUserOrganizations(userOrgs);
-                }
+                setUserOrganizations(userOrgs);
             } catch (error) {
                 console.error('Error fetching or filtering organizations:', error);
             }
         };
 
-        fetchData();
+            fetchData();
+
     }, [userInfo]);
 
     useEffect(() => {
@@ -87,7 +87,7 @@ function Organizations() {
                             <button className="scroll-button left" onClick={() => scroll('left', listRefJoined)}>&lt;</button>
                             <div className="organization-list" ref={listRefJoined}>
                                 {userOrganizations.map(org => (
-                                    <OrganizationBlock key={org.id} name={org.name} />
+                                    <OrganizationBlock key={org.id} name={org.name} organizationID={org.organizationID} description={org.description} />
                                 ))}
                             </div>
                             <button className="scroll-button right" onClick={() => scroll('right', listRefJoined)}>&gt;</button>

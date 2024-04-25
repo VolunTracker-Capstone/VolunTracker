@@ -1,10 +1,3 @@
-// import {createContext} from "react";
-//
-// export const AuthContext = createContext({
-//     jwt: localStorage.getItem('jwt'),
-//     setJwt: () => {}
-// });
-
 import React, { useState } from 'react';
 
 export const AuthContext = React.createContext({

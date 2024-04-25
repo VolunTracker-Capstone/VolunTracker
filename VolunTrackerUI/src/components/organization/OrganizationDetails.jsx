@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import useAuth from "../user/useAuth.jsx";
+import {useUserOrganizations} from "../user/UserOrganizationsContext.jsx";
 
 function OrganizationDetails() {
     let url = "https://voluntrackerapi.azurewebsites.net/UserJoinsOrg"
@@ -8,10 +9,21 @@ function OrganizationDetails() {
     let path = "/organizations";
     let pathUnauthenticated = "/user/login";
     const { state: { name, description, organizationID } } = useLocation();
+    const { userOrganizations, setUserOrganizations } = useUserOrganizations();
     const { jwt, login, logout, isAuthenticated } = useAuth();
     const [userInfo, setUserInfo] = useState({});
 
+    function isUserInOrg(){
+        for (let i = 0; i < userOrganizations.length; i++){
+            if (organizationID === userOrganizations[i].organizationID){
+                return true;
+            }
+        }
+        return false;
+    }
+
     useEffect(() => {
+        console.log(userOrganizations);
         const token = jwt;
         if (token) {
             const decodedToken = parseJwt(token);
@@ -70,7 +82,12 @@ function OrganizationDetails() {
             <form onSubmit={handleSubmit}>
                 <h2>Organization Details: {name}</h2>
                 <p>{description}</p>
-                <button type="submit" className="join-org-button">Join Organization</button>
+                {isUserInOrg() ? (
+                    <button type="submit" className="leave-org-button">Leave Organization</button>
+                ) : (
+                    <button type="submit" className="join-org-button">Join Organization</button>
+                )}
+
             </form>
         </div>
     );

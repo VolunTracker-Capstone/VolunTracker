@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Nav } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { VscAccount } from 'react-icons/vsc';
@@ -7,12 +7,31 @@ import logo from '../assets/VolunTrackerIcon.png';
 import useAuth from "./user/useAuth.jsx";
 
 function Navbar() {
+    const [userInfo, setUserInfo] = useState({});
     const { jwt, login, logout, isAuthenticated } = useAuth();
 
     const handleLogout = () => {
         logout();
     };
+    useEffect(() => {
+        const token = jwt;
+        if (token) {
+            const decodedToken = parseJwt(token);
+            setUserInfo(decodedToken);
+        }
+    }, [jwt]);
 
+    function parseJwt(token) {
+        const base64Url = token.split('.')[1];
+        const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+        const jsonPayload = decodeURIComponent(
+            atob(base64)
+                .split('')
+                .map((c) => '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2))
+                .join('')
+        );
+        return JSON.parse(jsonPayload);
+    }
     return (
         <Nav className='mainNav' activeKey='/'>
             <div className='mainHeader'>
@@ -26,7 +45,8 @@ function Navbar() {
                         <img id='voluntrackerLogo' src={logo} alt='VolunTracker Logo' />
                     </Link>
                 </div>
-                <div className='column'>
+                <div className='column' style={{ position: 'relative' }}>
+                    {isAuthenticated() && <p style={{ color: 'white', fontSize: '24px', position: 'absolute', top: '40px' }}>{userInfo.username}</p>}
                     <Link to="/manage">
                         <VscAccount size={50} style={{ fill: 'white' }} id='userIcon' />
                     </Link>

@@ -19,10 +19,12 @@ import Organizations from "./components/organization/Organizations.jsx";
 import Events from "./components/organization/Events.jsx";
 import { AuthContextProvider } from './components/user/AuthContext.jsx';
 import OrganizationDetails from "./components/organization/OrganizationDetails.jsx";
+import { UserOrganizationsProvider } from "./components/user/UserOrganizationsContext.jsx";
 
 function App() {
     return (
         <AuthContextProvider>
+        <UserOrganizationsProvider>
         <div>
             <NavBar/>
             <Routes>
@@ -51,6 +53,7 @@ function App() {
                 <Route path="*" element={<NotFound/>} />
             </Routes>
         </div>
+        </UserOrganizationsProvider>
         </AuthContextProvider>
     )
 }

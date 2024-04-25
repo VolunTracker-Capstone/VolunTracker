@@ -20,6 +20,7 @@ import Events from "./components/organization/Events.jsx";
 import { AuthContextProvider } from './components/user/AuthContext.jsx';
 import OrganizationDetails from "./components/organization/OrganizationDetails.jsx";
 import { UserOrganizationsProvider } from "./components/user/UserOrganizationsContext.jsx";
+import EventDetails from "./components/organization/EventDetails.jsx";
 
 function App() {
     return (
@@ -42,6 +43,7 @@ function App() {
                 <Route path="/faq" element={<FAQ/>} ></Route>
                 <Route path="/events/create" element={<EventCreation/>} />
                 <Route path="/events" element={<Events/>} />
+                <Route path="/events/:eventId" element={<EventDetails/>} />
                 <Route path="/manage" element={<Manage/>} />
                 <Route path="/notification-test" element={<NotificationTest/>} />
                 <Route path="create-account" element={<AccountCreation/>} />

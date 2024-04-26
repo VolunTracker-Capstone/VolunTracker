@@ -65,7 +65,7 @@ function EventDetails() {
             setEventInfo(formattedEventInfo);
         }
         fetchData();
-    }, []);
+    }, [[eventID, userInfo.memberID, checkedOut, checkedIn, checkOutTime, checkInTime]]);
 
     useEffect(() => {
         const token = jwt;
@@ -149,7 +149,7 @@ function EventDetails() {
         }
     };
 
-    const checkIn = (e) => {
+    const checkIn = async (e) => {
         e.preventDefault();
         const currentDate = new Date().toISOString();
         const formattedDate = currentDate.toLocaleString('en-US', {
@@ -166,11 +166,11 @@ function EventDetails() {
             datetime: currentDate
         }
         console.log(requestBody);
-        fetch(checkInUrl, {
+        await fetch(checkInUrl, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(requestBody)
-        })
+        });
         setCheckedIn(true);
         setCheckInTime(formattedDate);
     }
@@ -178,6 +178,7 @@ function EventDetails() {
     const checkOut = (e) => {
         e.preventDefault();
         const currentDate = new Date().toISOString();
+        console.log(currentDate)
         const formattedDate = currentDate.toLocaleString('en-US', {
             year: 'numeric',
             month: 'long',

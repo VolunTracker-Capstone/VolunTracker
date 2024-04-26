@@ -17,6 +17,7 @@ function Manage() {
     const [memberOrganizations, setMemberOrganizations] = useState([]);
     const { jwt, login, logout, isAuthenticated } = useAuth();
 
+
     let url = "https://voluntrackerapi.azurewebsites.net/organizations";
     let navigate = useNavigate();
     let path = "/organizations/create";
@@ -89,21 +90,13 @@ function Manage() {
     }
     return(
         <>
-        <div className="manageGrid">
-            <div id="manageNav">
-                <Link to="../faq"> <div id="manageNavItems"><MdSpaceDashboard /> Dashboard</div></Link>
-                <Link to="../faq">   <div id="manageNavItems"><MdPeopleAlt/> Organization</div></Link>
-                <Link to="../faq">    <div id="manageNavItems"><BsClipboard2DataFill/> Reports</div></Link>
-                <Link to="../faq">  <div id="manageNavItems"><FaFile/> Files</div></Link>
-                <Link to="../faq">  <div id="manageNavItems"><IoIosSettings/> Settings</div></Link>
-</div>
             <div className="manageContent">
                 <h1>Administered Organizations</h1>
                 {memberOrganizations.length > 0 && isAuthenticated() ? (
                     <ul>
                         {memberOrganizations.map(org => (
                             <li key={org.id}>
-                                {org.name} - Owner: {userInfo.firstName}
+                               <Link to={`/manage/${org.organizationID}`}> {org.name} - Owner: {userInfo.firstName}</Link>
                             </li>
                         ))}
                     </ul>
@@ -116,7 +109,6 @@ function Manage() {
                     </Button>
                 </form>
             </div>
-        </div>
         </>
     );
 }

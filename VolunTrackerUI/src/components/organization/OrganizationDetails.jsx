@@ -3,7 +3,8 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import useAuth from "../user/useAuth.jsx";
 import {useUserOrganizations} from "../user/UserOrganizationsContext.jsx";
 import VoluntrackerImage from "../../assets/VolunTrackerIcon.png";
-
+import { IoEnter } from "react-icons/io5";
+import {MdSpaceDashboard} from "react-icons/md";
 
 
 function OrganizationDetails() {
@@ -114,7 +115,7 @@ function OrganizationDetails() {
         <div className="organization-details">
             <div className="content">
                 <form onSubmit={handleSubmit} className="org-form">
-                    {<img style={{}} src={VoluntrackerImage} alt="Voluntracker Logo" />}
+                    <div ><IoEnter  size={250}  /> </div>
                     {isUserInOrg() ? (
                         <h1 className="title">Would you like to leave {name}?</h1>
                     ) : (

@@ -22,7 +22,7 @@ function OrgFile(props) {
                 <Link to={SettingsLink}><div id="manageNavItems"><IoIosSettings/> Settings</div></Link>
             </div>
 
-        <div><h1>This organization has no files</h1></div>
+        <div><h1>{organizationId} has no files</h1></div>
         </div>
 
     );

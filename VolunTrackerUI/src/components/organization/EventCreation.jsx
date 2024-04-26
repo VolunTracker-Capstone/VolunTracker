@@ -1,27 +1,62 @@
-import '../../App.css'
-import React, {useState} from "react";
-import { FiUpload } from "react-icons/fi";
+import '../../App.css';
+import React, { useState } from "react";
+import { useParams } from 'react-router-dom';
 
-function EventCreation(){
-    const [eventName, setEventName] = useState('');
-    const [eventAddress, setEventAddress] = useState('');
-    const [eventCity, setEventCity] = useState('');
-    const [eventState, setEventState] = useState('');
-    const [eventZip, setEventZip] = useState('');
-    const [eventImg, setEventImg] = useState('');
-    const [eventVolunteers, setEventVolunteers] = useState('');
-    const [eventDescription, setEventDescription] = useState('');
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Event Name:', eventName);
-        console.log('Event Street:', eventAddress);
-        console.log('Event City:', eventCity);
-        console.log('Event State:', eventState);
-        console.log('Event Zip:', eventZip);
-        console.log('Event Image:', eventImg);
-        console.log('Event Volunteers Needed:', eventVolunteers);
-        console.log('Event Description:', eventDescription);
+function EventCreation() {
+    const { organizationId } = useParams(); // This will get organizationId from the URL
+    const [formData, setFormData] = useState({
+
+        name: '',
+        date: "2024-04-26T05:25:01.287Z", // Hardcoded ISO 8601 format date
+        street: '',
+        city: '',
+        state: '',
+        zip: '',
+        eventImage: 'string', // This should be updated to a proper path or base64 string as needed
+        volunteersNeeded: 0
+    });
+
+
+    // Handle form changes
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value
+        }));
     };
+
+    // Handle form submission
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const eventData = {
+            ...formData,
+            eventOwnerID: organizationId, // Assign organizationId from URL parameter
+        };
+
+        try {
+            const response = await fetch('https://voluntrackerapi.azurewebsites.net/events', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(eventData)
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+            console.log('Event created:', responseData);
+            // Redirect to event list or show success message
+        } catch (error) {
+            console.error('There has been a problem with your fetch operation:', error);
+            // Show an error message to the user
+        }
+    };
+
+    // ...
 
     return(
         <div className="createEventContainer">
@@ -30,13 +65,14 @@ function EventCreation(){
                 <p>Create your public event for your organization</p>
             </div>
             <div className="eventFormContainer">
-                <form>
+                <form onSubmit={handleSubmit}>
                     <div className="input-container">
                         <label className="eventCreationLabels">Event Name:</label>
                         <input
                             type="text"
-                            value={eventName}
-                            onChange={(e) => setEventName(e.target.value)}
+                            name="name"
+                            value={formData.name}
+                            onChange={handleChange}
                             required
                             className="createEventInputField"
                         />
@@ -45,8 +81,9 @@ function EventCreation(){
                         <label className="eventCreationLabels">Street Address:</label>
                         <input
                             type="text"
-                            value={eventAddress}
-                            onChange={(e) => setEventAddress(e.target.value)}
+                            name="street"
+                            value={formData.street}
+                            onChange={handleChange}
                             required
                             className="createEventInputField"
                         />
@@ -55,27 +92,35 @@ function EventCreation(){
                         <label className="eventCreationLabels">City:</label>
                         <input
                             type="text"
-                            value={eventCity}
-                            onChange={(e) => setEventCity(e.target.value)}
+                            name="city"
+                            value={formData.city}
+                            onChange={handleChange}
                             required
                             className="createEventInputField"
                         />
                     </div>
                     <div className="input-container">
                         <label className="eventCreationLabels">State:</label>
-                        <select className="createEventSelectField" value={eventState} onChange={e => setEventState(e.target.value)}>
-                            <option>Illinois</option>
-                            <option>Arizona</option>
-                            <option>Texas</option>
+                        <select
+                            name="state"
+                            value={formData.state}
+                            onChange={handleChange}
+                            className="createEventSelectField"
+                            required>
+                            <option value="">Select a State</option>
+                            <option value="IL">Illinois</option>
+                            <option value="AZ">Arizona</option>
+                            <option value="TX">Texas</option>
                         </select>
                     </div>
                     <div className="input-container">
                         <label className="eventCreationLabels">Zip:</label>
                         <input
                             type="text"
+                            name="zip"
                             pattern="[0-9]{5}"
-                            value={eventZip}
-                            onChange={(e) => setEventZip(e.target.value)}
+                            value={formData.zip}
+                            onChange={handleChange}
                             required
                             className="createEventInputField"
                         />
@@ -83,40 +128,29 @@ function EventCreation(){
                     <div className="input-container">
                         <label className="eventCreationLabels">Volunteers Needed:</label>
                         <input
-                            type="text"
-                            value={eventVolunteers}
-                            onChange={(e) => setEventVolunteers(e.target.value)}
+                            type="number"
+                            name="volunteersNeeded"
+                            value={formData.volunteersNeeded}
+                            onChange={handleChange}
                             required
                             className="createEventInputField"
                         />
                     </div>
+                    <div className="eventDescriptionContainer">
+                        <label className="eventDescriptionLabel">Description of Event:</label>
+                        <textarea
+                            name="description"
+                            value={formData.description}
+                            onChange={handleChange}
+                            required
+                            className="createEventInputField"
+                        />
+                    </div>
+                    <button type="submit" className="createEventButton">
+                        Create Event
+                    </button>
                 </form>
             </div>
-            <div className="eventImageFormContainer">
-                <div className="dragImage" >
-                    <FiUpload id="uploadIcon" size={90} style={{color: '#e27602'}}/>
-                    <img style={{width:150, maxHeight:200, position:"relative" }} src={eventImg}/>
-                </div>
-                <h3>Upload a Profile Picture for Event</h3>
-                <input
-                    id="eventImgUpload"
-                    type="file"
-                    accept="image/*"
-                    title=" ade"
-                    onChange={e => { setEventImg(URL.createObjectURL(e.target.files[0])); document.getElementById('uploadIcon').style.display = 'none';}}
-                />
-                <div className="eventDescriptionContainer">
-                    <label className="eventDescriptionLabel">Description of Event:</label>
-                    <input
-                        type="text"
-                        value={eventDescription}
-                        onChange={(e) => setEventDescription(e.target.value)}
-                        required
-                        className="createEventInputField"
-                    />
-                </div>
-            </div>
-            <button type="submit" className="createEventButton" onClick={handleSubmit}>Create Event</button>
         </div>
     );
 }

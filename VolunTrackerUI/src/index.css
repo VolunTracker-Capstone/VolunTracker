@@ -497,29 +497,84 @@ input[id=eventImgUpload] {
 .report-text {
   font-size: 24px;
 }
-
-
-@media only screen and (max-width: 328px) {
-  /*About CSS*/
-  .card{
-    font-size: .8em;
-  }
-
-}
-@media only screen and (max-width: 480px) {
-  /*About CSS*/
-  .card{
-    font-size: .9em;
-  }
-}
-@media only screen and (max-width: 768px) {
-  /*About CSS*/
-  .card{
-    font-size: 1.1em;
-  }
-  /*FAQ CSS*/
+/* This is for user joins organization */
+.organization-details {
+  display: flex;
+  flex-direction: column;
+  min-height: 80vh;
+  justify-content: center;
+  align-items: center;
 }
 
+.content {
+  text-align: center;
+  max-width: 600px;
+}
+
+.title {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.description {
+  float: left;
+  font-size: 1.5rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+.org-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.fancybutton {
+  height: 100px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.join-org-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.leave-org-button {
+  background-color: #f44336;
+  color: white;
+}
+
+.fancybutton:hover {
+  opacity: 0.9;
+}
+.voluntracker-logo {
+  align-content: center;
+  width: 100%;
+  height: 30%;
+  margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 1200px) {
+  /*About CSS*/
+  .aboutCards{
+    flex-flow: column;
+    gap: 50px;
+    align-items: center;
+  }
+  .card{
+    width: 95%;
+  }
+  /*Nav CSS*/
+  #pageTitle{
+    margin-left: 30px;
+  }
+}
 @media only screen and (max-width: 992px) {
   /*About CSS*/
   .aboutCards{
@@ -594,77 +649,57 @@ input[id=eventImgUpload] {
     font-size: 1rem;
     margin-top: 5px;
   }
+  /*Nav CSS*/
+  #pageTitle{
+    font-size: 2.6rem;
+  }
 }
-@media only screen and (max-width: 1200px) {
+@media only screen and (max-width: 768px) {
   /*About CSS*/
-  .aboutCards{
-    flex-flow: column;
-    gap: 50px;
+  .card{
+    font-size: 1.1em;
+  }
+  /*Nav CSS*/
+  .mainHeader {
+    flex-direction: column;
     align-items: center;
   }
-  .card{
-    width: 95%;
+  .column {
+    margin: 0;
+    text-align: center;
+  }
+  #pageTitle {
+    display: none;
+  }
+  #userIcon {
+    display: none;
+  }
+  .nav-item{
+    font-size: 1.1em;
   }
 }
-/* This is for user joins organization */
-.organization-details {
-  display: flex;
-  flex-direction: column;
-  min-height: 80vh;
-  justify-content: center;
-  align-items: center;
+@media only screen and (max-width: 580px) {
+  .nav-item{
+    font-size: 1em;
+  }
 }
 
-.content {
-  text-align: center;
-  max-width: 600px;
+@media only screen and (max-width: 480px) {
+  /*About CSS*/
+  .card{
+    font-size: .9em;
+  }
+  .nav-item{
+    font-size: .9em;
+  }
 }
+@media only screen and (max-width: 395px) {
+  /*About CSS*/
+  .card{
+    font-size: .8em;
+  }
+  .nav-item{
+    font-size: .8em;
+  }
 
-.title {
-  font-size: 2rem;
-  color: #333;
-  margin-bottom: 1rem;
-}
-
-.description {
-  float: left;
-  font-size: 1.5rem;
-  color: #666;
-  margin-bottom: 2rem;
-}
-
-.org-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.fancybutton {
-  height: 100px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  margin-bottom: 10px;
-  font-size: 2rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.join-org-button {
-  background-color: #4CAF50;
-  color: white;
-}
-
-.leave-org-button {
-  background-color: #f44336;
-  color: white;
-}
-
-.fancybutton:hover {
-  opacity: 0.9;
-}
-.voluntracker-logo {
-  align-content: center;
-  width: 100%;
-  height: 30%;
-  margin-bottom: 20px;
 }

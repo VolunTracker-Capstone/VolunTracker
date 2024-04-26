@@ -82,7 +82,7 @@ function Organizations() {
             <div>
                 {isAuthenticated() && (
                     <>
-                        <h2>Joined Organizations:</h2>
+                        <h2 style={{paddingLeft: 15}}>Joined Organizations:</h2>
                         <div className="organization-container">
                             <button className="scroll-button left" onClick={() => scroll('left', listRefJoined)}>&lt;</button>
                             <div className="organization-list" ref={listRefJoined}>
@@ -96,7 +96,7 @@ function Organizations() {
                 )}
             </div>
             <div>
-                <h2>All Organizations:</h2>
+                <h2 style={{paddingLeft: 15}}>All Organizations:</h2>
                 <div className="organization-container">
                     <button className="scroll-button left" onClick={() => scroll('left', listRefAll)}>&lt;</button>
                     <div className="organization-list" ref={listRefAll}>

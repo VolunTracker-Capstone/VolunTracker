@@ -46,7 +46,7 @@ function Navbar() {
                     </Link>
                 </div>
                 <div className='column' style={{ position: 'relative' }}>
-                    {isAuthenticated() && <p style={{ color: 'white', fontSize: '24px', position: 'absolute', top: '40px' }}>{userInfo.username}</p>}
+                    {/*{isAuthenticated() && <p style={{ color: 'white', fontSize: '24px', position: 'absolute', top: '40px' }}>{userInfo.username}</p>}*/}
                     <Link to="/manage">
                         <VscAccount size={50} style={{ fill: 'white' }} id='userIcon' />
                     </Link>

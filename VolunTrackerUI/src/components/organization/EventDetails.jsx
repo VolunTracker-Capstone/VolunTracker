@@ -16,6 +16,7 @@ function EventDetails() {
     const [userInEvent, setUserInEvent] = useState(false);
     const [checkedIn, setCheckedIn] = useState(false);
     const [checkInTime, setCheckInTime] = useState();
+    const [unformattedCheckInTime, setUnformattedCheckInTime] = useState();
     const [checkedOut, setCheckedOut] = useState(false);
     const [checkOutTime, setCheckOutTime] = useState();
     const [eventInfo, setEventInfo] = useState({});
@@ -93,6 +94,7 @@ function EventDetails() {
                     hour12: true
                 });
                 setCheckedIn(true);
+                setUnformattedCheckInTime(userAttendsEvent.checkIn);
                 setCheckInTime(formattedDate);
             }
             if (userAttendsEvent.checkOut === null){
@@ -109,7 +111,6 @@ function EventDetails() {
                     hour12: true
                 });
                 setCheckedOut(true);
-                console.log("Checked Out: " + checkedOut);
                 setCheckOutTime(formattedDate);
             }
         }
@@ -151,7 +152,8 @@ function EventDetails() {
 
     const checkIn = async (e) => {
         e.preventDefault();
-        const currentDate = new Date().toISOString();
+        let currentDate = new Date();
+        currentDate.setHours(currentDate.getHours() - 5);
         const formattedDate = currentDate.toLocaleString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -165,20 +167,20 @@ function EventDetails() {
         let requestBody = {
             datetime: currentDate
         }
-        console.log(requestBody);
         await fetch(checkInUrl, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(requestBody)
         });
         setCheckedIn(true);
+        setUnformattedCheckInTime(currentDate);
         setCheckInTime(formattedDate);
     }
 
-    const checkOut = (e) => {
+    const checkOut = async (e) => {
         e.preventDefault();
-        const currentDate = new Date().toISOString();
-        console.log(currentDate)
+        let currentDate = new Date();
+        currentDate.setHours(currentDate.getHours() - 5);
         const formattedDate = currentDate.toLocaleString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -192,7 +194,6 @@ function EventDetails() {
         let requestBody = {
             datetime: currentDate
         }
-        console.log(requestBody);
         fetch(checkInUrl, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
@@ -200,19 +201,48 @@ function EventDetails() {
         })
         setCheckedOut(true);
         setCheckOutTime(formattedDate);
+        let updateUserInOrgHoursUrl = `https://voluntrackerapi.azurewebsites.net/UserJoinsOrg/${eventInfo.eventOwnerID}/${userInfo.memberID}`;
+        let updateMemberTotalHoursUrl = `https://voluntrackerapi.azurewebsites.net/members/${userInfo.memberID}/updateHours`;
+        let hoursWorkedDecimal = await getHoursWorkedInDecimal(currentDate);
+        let requestBodyHrsWrkd = {
+            hoursWorked: hoursWorkedDecimal
+        }
+        let requestBodyTtlHrs = {
+            totalHours: hoursWorkedDecimal
+        }
+        fetch(updateUserInOrgHoursUrl, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(requestBodyHrsWrkd)
+        })
+        fetch(updateMemberTotalHoursUrl, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(requestBodyTtlHrs)
+        })
     }
+    function getHoursWorkedInDecimal (unformattedCheckOutTime){
+        const checkInDateTime = new Date(unformattedCheckInTime);
+        const checkOutDateTime = new Date(unformattedCheckOutTime);
+        checkOutDateTime.setHours(checkOutDateTime.getHours() + 5);
+        const diffInMilliseconds = Math.abs(checkOutDateTime - checkInDateTime);
+
+        const totalHours = diffInMilliseconds / (1000 * 60 * 60);
+        const hours = Math.floor(totalHours);
+        const minutes = Math.round((totalHours - hours) * 60);
+
+        return hours + minutes / 60;
+    }
+
     useEffect(() => {
         const fetchTimeWorked = async () => {
             let userAttendsEventUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}`;
             let userAttendsEventResponse = await fetch(userAttendsEventUrl);
             let userAttendsEvent = await userAttendsEventResponse.json();
-            console.log(userAttendsEvent);
 
-            // Parse the check-in and check-out times
             const checkIn = new Date(userAttendsEvent.checkIn);
             const checkOut = new Date(userAttendsEvent.checkOut);
 
-            // Calculate the time difference between check-in and check-out times
             const diffInMilliseconds = Math.abs(checkOut - checkIn);
             const hours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
             const minutes = Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
@@ -230,13 +260,11 @@ function EventDetails() {
             method: 'DELETE',
         })
             .then(async response => {
-                console.log('Response status:', response.status);
 
                 if (!response.ok) {
                     const error = 'An error occurred';
                     return Promise.reject(error);
                 }
-                console.log('Leave successful');
             })
             .catch(error => {
                 console.error('There was an error!', error);
@@ -250,20 +278,16 @@ function EventDetails() {
             'checkIn': null,
             'checkOut': null
         };
-        console.log(data);
         fetch(url, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data)
         })
             .then(async response => {
-                console.log('Response status:', response.status);
-
                 if (!response.ok) {
                     const error = 'An error occurred';
                     return Promise.reject(error);
                 }
-                console.log('Join successful');
             })
             .catch(error => {
                 console.error('There was an error!', error);

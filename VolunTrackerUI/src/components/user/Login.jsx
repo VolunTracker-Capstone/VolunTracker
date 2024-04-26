@@ -52,7 +52,7 @@ function Login() {
                     setUserInfo(decodedToken);
                 }
                 const fetchData = async () => {
-                    const allOrgsResponse = await fetch(url);
+                    const allOrgsResponse = await fetch("https://voluntrackerapi.azurewebsites.net/organizations");
                     const allOrgData = await allOrgsResponse.json();
 
                     let userOrgs = [];
@@ -61,15 +61,16 @@ function Login() {
                         const orgMembersResponse = await fetch(url2);
                         const orgMembersData = await orgMembersResponse.json();
                         for (let j = 0; j < orgMembersData.length; j++) {
-                            if (String(orgMembersData[j].memberID) === String(userInfo.memberID)) {
+                            if (orgMembersData[j].memberID === userInfo.memberID) {
                                 userOrgs.push(allOrgData[i]);
                                 break;
                             }
                         }
                     }
+                    console.log(userOrgs);
                     setUserOrganizations(userOrgs);
                 }
-                fetchData();
+                await fetchData();
                 navigate(path);
             })
             .catch(error => {

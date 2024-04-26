@@ -49,7 +49,7 @@ function OrganizationEvents() {
         <div className="manageGrid">
             <div id="manageNav">
                 <Link to={ManageLink}><div id="manageNavItems"><MdSpaceDashboard /> Dashboard</div></Link>
-                <Link to={OrgLink}><div id="manageNavItems"><MdPeopleAlt/> Organization</div></Link>
+                <Link to={OrgLink}><div id="manageNavItems"><MdPeopleAlt/>Organization</div></Link>
                 <Link to={EventLink}><div id="manageNavItems"><FaAddressBook /> Events</div></Link>
                 <Link to={ReportLink}><div id="manageNavItems"><BsClipboard2DataFill/> Reports</div></Link>
                 <Link to={FilesLink}><div id="manageNavItems"><FaFile/> Files</div></Link>

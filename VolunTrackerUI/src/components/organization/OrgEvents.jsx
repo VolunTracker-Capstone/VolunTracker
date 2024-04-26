@@ -59,17 +59,17 @@ function OrganizationEvents() {
                 <h2>Events for your organization</h2>
                 {events.length > 0 ? (
                     <ListGroup>
-                        {events.map(event => (
-                            <ListGroup.Item key={event.eventID}>
+                        {events.map(eachEvent => (
+                            <ListGroup.Item key={eachEvent.eventID}>
                                 <Card style={{margin: "10px"}}>
                                     <Card.Body>
-                                        <Card.Title>{event.name}</Card.Title>
+                                        <Card.Title>{eachEvent.name}</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">
-                                            {new Date(event.date).toLocaleString()}
+                                            {new Date(eachEvent.date).toLocaleString()}
                                         </Card.Subtitle>
-                                        <Button variant="primary" as={Link} to={`/Manage/${organizationId}/events/${event.eventID}`}>
+                                        <Link to={`/events/${eachEvent.eventID}`} state={{ name, eventID: eachEvent.eventID }}>
                                             View Details
-                                        </Button>
+                                        </Link>
                                     </Card.Body>
                                 </Card>
                             </ListGroup.Item>

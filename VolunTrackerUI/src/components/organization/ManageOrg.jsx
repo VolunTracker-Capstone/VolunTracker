@@ -4,6 +4,7 @@ import {MdPeopleAlt, MdSpaceDashboard} from "react-icons/md";
 import {BsClipboard2DataFill} from "react-icons/bs";
 import {FaFile} from "react-icons/fa";
 import {IoIosSettings} from "react-icons/io";
+import { FaAddressBook } from "react-icons/fa";
 import useAuth from "../user/useAuth.jsx";
 import { useParams } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ function ManageOrg(props) {
 
     // Use organizationId in your URLs
     const ManageLink = `/Manage`;
+    const EventLink = `/Manage/${organizationId}/events`;
     const OrgLink = `/Manage/${organizationId}`;
     const ReportLink = `/Manage/${organizationId}/report`;
     const FilesLink = `/Manage/${organizationId}/files`;
@@ -62,6 +64,7 @@ function ManageOrg(props) {
             <div id="manageNav">
                 <Link to={ManageLink}><div id="manageNavItems"><MdSpaceDashboard /> Dashboard</div></Link>
                 <Link to={OrgLink}><div id="manageNavItems"><MdPeopleAlt/> Organization</div></Link>
+                <Link to={EventLink}><div id="manageNavItems"><FaAddressBook /> Events</div></Link>
                 <Link to={ReportLink}><div id="manageNavItems"><BsClipboard2DataFill/> Reports</div></Link>
                 <Link to={FilesLink}><div id="manageNavItems"><FaFile/> Files</div></Link>
                 <Link to={SettingsLink}><div id="manageNavItems"><IoIosSettings/> Settings</div></Link>

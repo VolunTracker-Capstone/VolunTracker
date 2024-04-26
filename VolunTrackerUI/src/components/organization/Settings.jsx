@@ -6,6 +6,7 @@ import { FaFile } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import {Button} from "react-bootstrap";
 import {Link, useParams} from 'react-router-dom';
+
 function Settings(props) {
         const { organizationId } = useParams();
         const ManageLink = `/Manage`;
@@ -51,15 +52,11 @@ function Settings(props) {
                     <Link to={SettingsLink}><div id="manageNavItems"><IoIosSettings/> Settings</div></Link>
                 </div>
                 <div className="column">
-                    <p>Settings</p>
-                    <p>Do you wish to delete the organization?</p>
-                    <Button onClick={handleDelete}>Delete Organization</Button>
-                </div>
-                <div className="column">
-                    <div>
-<p> HEllo</p>
-                    </div>
-
+                    <h3>Settings</h3>
+                    <p>Do you wish to delete this organization? This action cannot be undone.</p>
+                    <Button variant="danger" size="lg" onClick={handleDelete}>
+                        Delete Organization
+                    </Button>
                 </div>
             </div>
         </div>

@@ -643,7 +643,7 @@ input[id=eventImgUpload] {
   border: none;
   border-radius: 5px;
   margin-bottom: 10px;
-  font-size: 3rem;
+  font-size: 2rem;
   cursor: pointer;
   transition: background-color 0.3s;
 }

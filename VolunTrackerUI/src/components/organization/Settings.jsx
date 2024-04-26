@@ -5,11 +5,17 @@ import { BsClipboard2DataFill } from "react-icons/bs";
 import { FaFile } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import {Button} from "react-bootstrap";
+import {Link, useParams} from 'react-router-dom';
 function Settings(props) {
+        const { organizationId } = useParams();
+        const ManageLink = `/Manage`;
+        const OrgLink = `/Manage/${organizationId}`;
+        const ReportLink = `/Manage/${organizationId}/report`;
+        const FilesLink = `/Manage/${organizationId}/files`;
+        const SettingsLink = `/Manage/${organizationId}/settings`;
     function handleDelete() {
-        const organizationIdToDelete = 5002; // The ID of the organization to delete
 
-        fetch(`https://voluntrackerapi.azurewebsites.net/organizations/${organizationIdToDelete}`, {
+        fetch(`https://voluntrackerapi.azurewebsites.net/organizations/${organizationId}`, {
             method: 'DELETE',
             headers: {
                 // Be very careful with what you delete
@@ -38,11 +44,11 @@ function Settings(props) {
             </div>
             <div className="manageGrid">
                 <div id="manageNav">
-                    <div id="manageNavItems"><MdSpaceDashboard /> Dashboard</div>
-                    <div id="manageNavItems"><MdPeopleAlt/> Organization</div>
-                    <div id="manageNavItems" style={{ color: 'orange'}}><BsClipboard2DataFill/> Reports</div>
-                    <div id="manageNavItems"><FaFile/> Files</div>
-                    <div id="manageNavItems"><IoIosSettings/> Settings</div>
+                    <Link to={ManageLink}><div id="manageNavItems"><MdSpaceDashboard /> Dashboard</div></Link>
+                    <Link to={OrgLink}><div id="manageNavItems"><MdPeopleAlt/> Organization</div></Link>
+                    <Link to={ReportLink}><div id="manageNavItems"><BsClipboard2DataFill/> Reports</div></Link>
+                    <Link to={FilesLink}><div id="manageNavItems"><FaFile/> Files</div></Link>
+                    <Link to={SettingsLink}><div id="manageNavItems"><IoIosSettings/> Settings</div></Link>
                 </div>
                 <div className="column">
                     <p>Settings</p>

@@ -21,6 +21,9 @@ import { AuthContextProvider } from './components/user/AuthContext.jsx';
 import OrganizationDetails from "./components/organization/OrganizationDetails.jsx";
 import { UserOrganizationsProvider } from "./components/user/UserOrganizationsContext.jsx";
 import EventDetails from "./components/organization/EventDetails.jsx";
+import ManageOrg from "./components/organization/ManageOrg.jsx"
+import OrganizationMember from "./components/organization/OrganizationMember.jsx";
+import OrgFile from "./components/organization/OrgFile.jsx";
 
 function App() {
     return (
@@ -35,9 +38,6 @@ function App() {
                     {/*<Route path="/" element={<OrganizationCreation/>} />*/}
                     {/*<Route path="/create" element={<OrganizationCreation/>} />*/}
                 </Route>
-                <Route path="/report" element={<OrganizationReport/>}>
-                </Route>
-                <Route path="/Settings" element={<Settings/>}></Route>
                 <Route path="/organizations" element={<Organizations/>}></Route>
                 <Route path="/organizations/:organizationId" element={<OrganizationDetails/>}></Route>
                 <Route path="/faq" element={<FAQ/>} ></Route>
@@ -45,6 +45,11 @@ function App() {
                 <Route path="/events" element={<Events/>} />
                 <Route path="/events/:eventId" element={<EventDetails/>} />
                 <Route path="/manage" element={<Manage/>} />
+                <Route path="/manage/:organizationId" element={<ManageOrg/>} />
+                <Route path="/manage/:organizationId/settings" element={<Settings/>}></Route>
+                <Route path="/manage/:organizationId/report" element={<OrganizationReport/>}></Route>
+                <Route path="/manage/:organizationId/files" element={<OrgFile/>}></Route>
+                <Route path="/manage/:organizationId/:memberId" element={<OrganizationMember/>} />
                 <Route path="/notification-test" element={<NotificationTest/>} />
                 <Route path="create-account" element={<AccountCreation/>} />
                 <Route path="/user">

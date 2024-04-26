@@ -10,7 +10,7 @@ import {Button, Card, ListGroup} from "react-bootstrap";
 function OrganizationEvents() {
     const [events, setEvents] = useState([]);
     const [loading, setLoading] = useState(true);
-    const { organizationId } = useParams(); 
+    const { organizationId } = useParams();
     const ManageLink = `/Manage`;
     const EventLink = `/Manage/${organizationId}/events`;
     const OrgLink = `/Manage/${organizationId}`;

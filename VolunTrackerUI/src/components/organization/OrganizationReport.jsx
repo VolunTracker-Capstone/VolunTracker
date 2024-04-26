@@ -18,7 +18,7 @@ function OrganizationReport() {
     const SettingsLink = `/Manage/${organizationId}/settings`;
     const [totalHoursSum, setTotalHoursSum] = useState(0);
     useEffect(() => {
-        fetch('https://voluntrackerapi.azurewebsites.net/organizations/${organizationId}/members')
+        fetch(`https://voluntrackerapi.azurewebsites.net/organizations/${organizationId}/members`)
             .then(response => response.json())
             .then(data => {
                 const sum = data.reduce((acc, member) => acc + member.hoursWorked, 0);
@@ -57,7 +57,7 @@ function OrganizationReport() {
                     <div className="card" style={{width: '250px', margin: 50, position: "relative", left: 200}}>
                         <div className="card-body">
                             <h5 >Total Volunteer impact</h5>
-                            <p > ${(totalHoursSum * 31.80).toFixed(0)}</p>
+                            <p > ${(totalHoursSum * 31.80).toFixed(2)}</p>
                         </div>
                     </div>
                     <div className="card" style={{width: '75%',  margin: 50, position: "relative", left: 150}}>

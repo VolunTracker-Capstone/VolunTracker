@@ -20,7 +20,7 @@ function OrganizationEvents() {
 
     useEffect(() => {
         const fetchEvents = async () => {
-            setLoading(true); // Start loading
+            setLoading(true);
             try {
                 const response = await fetch('https://voluntrackerapi.azurewebsites.net/events');
                 const allEvents = await response.json();
@@ -28,7 +28,7 @@ function OrganizationEvents() {
 
                 const orgId = parseInt(organizationId, 10);
 
-                // Filter events by the parsed organization ID
+
                 const relatedEvents = allEvents.filter(event => event.eventOwnerID === orgId);
                 setEvents(relatedEvents);
             } catch (error) {
@@ -40,7 +40,7 @@ function OrganizationEvents() {
 
         fetchEvents();
     }, [organizationId]);
-
+    // in case of long load time or smth
     if (loading) {
         return <div>Loading events...</div>;
     }

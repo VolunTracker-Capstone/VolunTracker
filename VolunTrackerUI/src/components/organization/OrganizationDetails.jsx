@@ -2,6 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import useAuth from "../user/useAuth.jsx";
 import {useUserOrganizations} from "../user/UserOrganizationsContext.jsx";
+import VoluntrackerImage from "../../assets/VolunTrackerIcon.png";
+import { IoEnter } from "react-icons/io5";
+import {MdSpaceDashboard} from "react-icons/md";
+
 
 function OrganizationDetails() {
     let url = "https://voluntrackerapi.azurewebsites.net/UserJoinsOrg";
@@ -107,17 +111,25 @@ function OrganizationDetails() {
     }
 
     return (
-        <div>
-            <form onSubmit={handleSubmit}>
-                <h2>Organization Details: {name}</h2>
-                <p>{description}</p>
-                {isUserInOrg() ? (
-                    <button type="submit" className="leave-org-button">Leave Organization</button>
-                ) : (
-                    <button type="submit" className="join-org-button">Join Organization</button>
-                )}
 
-            </form>
+        <div className="organization-details">
+            <div className="content">
+                <form onSubmit={handleSubmit} className="org-form">
+                    <div ><IoEnter  size={250}  /> </div>
+                    {isUserInOrg() ? (
+                        <h1 className="title">Would you like to leave {name}?</h1>
+                    ) : (
+                        <h1 className="title">Would you like to join {name}?</h1>
+                    )}
+
+                    <h2 className="description">Description: {description}</h2>
+                    {isUserInOrg() ? (
+                        <button type="submit" className="fancybutton leave-org-button">Leave  {name} </button>
+                    ) : (
+                        <button type="submit" className="fancybutton join-org-button">Join {name}</button>
+                    )}
+                </form>
+            </div>
         </div>
     );
 }

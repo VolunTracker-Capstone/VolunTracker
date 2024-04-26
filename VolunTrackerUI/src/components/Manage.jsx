@@ -5,17 +5,18 @@ import { MdPeopleAlt } from "react-icons/md";
 import { BsClipboard2DataFill } from "react-icons/bs";
 import { FaFile } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
-
 import React, { useEffect, useState } from 'react';
 import {useNavigate} from "react-router-dom";
 import {Button} from "react-bootstrap";
 import useAuth from "./user/useAuth.jsx";
+import {Link} from "react-router-dom";
 
 function Manage() {
     const [userInfo, setUserInfo] = useState({});
     const [allOrganizations, setAllOrganizations] = useState([]);
     const [memberOrganizations, setMemberOrganizations] = useState([]);
     const { jwt, login, logout, isAuthenticated } = useAuth();
+
 
     let url = "https://voluntrackerapi.azurewebsites.net/organizations";
     let navigate = useNavigate();
@@ -89,21 +90,13 @@ function Manage() {
     }
     return(
         <>
-        <div className="manageGrid">
-            <div id="manageNav">
-                <div id="manageNavItems"><MdSpaceDashboard /> Dashboard</div>
-                <div id="manageNavItems"><MdPeopleAlt/> Organization</div>
-                <div id="manageNavItems"><BsClipboard2DataFill/> Reports</div>
-                <div id="manageNavItems"><FaFile/> Files</div>
-                <div id="manageNavItems"><IoIosSettings/> Settings</div>
-            </div>
             <div className="manageContent">
                 <h1>Administered Organizations</h1>
                 {memberOrganizations.length > 0 && isAuthenticated() ? (
                     <ul>
                         {memberOrganizations.map(org => (
                             <li key={org.id}>
-                                {org.name} - Owner: {userInfo.firstName}
+                               <Link to={`/manage/${org.organizationID}`}> {org.name} - Owner: {userInfo.firstName}</Link>
                             </li>
                         ))}
                     </ul>
@@ -116,7 +109,6 @@ function Manage() {
                     </Button>
                 </form>
             </div>
-        </div>
         </>
     );
 }

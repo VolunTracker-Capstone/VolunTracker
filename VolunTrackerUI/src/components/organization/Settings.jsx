@@ -60,9 +60,9 @@ function Settings(props) {
                             <Card.Text>
                                 Do you wish to delete this organization? This action cannot be undone.
                             </Card.Text>
-                            <button type="button" className="delete-button" onClick={handleDelete}>
-                                Delete Organization
-                            </button>
+                          <Link to="/Manage"><button type="button" className="delete-button" onClick={handleDelete}>
+                            Delete Organization
+                            </button></Link>
                         </Card.Body>
                     </Card>
                 </div>

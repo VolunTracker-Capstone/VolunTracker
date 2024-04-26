@@ -15,8 +15,11 @@ function EventDetails() {
     const [userInfo, setUserInfo] = useState({});
     const [userInEvent, setUserInEvent] = useState(false);
     const [checkedIn, setCheckedIn] = useState(false);
+    const [checkInTime, setCheckInTime] = useState();
     const [checkedOut, setCheckedOut] = useState(false);
+    const [checkOutTime, setCheckOutTime] = useState();
     const [eventInfo, setEventInfo] = useState({});
+    const [timeWorked, setTimeWorked] = useState('');
 
 
     async function isUserInEvent(){
@@ -71,7 +74,47 @@ function EventDetails() {
             setUserInfo(decodedToken);
         }
     }, []);
-
+    useEffect(() => {
+        async function fetchData() {
+            let userAttendsEventUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}`;
+            let userAttendsEventResponse = await fetch(userAttendsEventUrl);
+            let userAttendsEvent = await userAttendsEventResponse.json();
+            if (userAttendsEvent.checkIn === null){
+                setCheckedIn(false);
+            } else {
+                const eventDate = new Date(userAttendsEvent.checkIn);
+                const formattedDate = eventDate.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                    hour12: true
+                });
+                setCheckedIn(true);
+                setCheckInTime(formattedDate);
+            }
+            if (userAttendsEvent.checkOut === null){
+                setCheckedOut(false);
+            } else {
+                const eventDate = new Date(userAttendsEvent.checkOut);
+                const formattedDate = eventDate.toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    second: 'numeric',
+                    hour12: true
+                });
+                setCheckedOut(true);
+                console.log("Checked Out: " + checkedOut);
+                setCheckOutTime(formattedDate);
+            }
+        }
+        fetchData();
+    },[userInfo, checkedOut, checkedIn, checkOutTime, checkInTime]);
     useEffect(() => {
         if (userInfo.email && eventID) {
             isUserInEvent().then(result => {
@@ -109,6 +152,15 @@ function EventDetails() {
     const checkIn = (e) => {
         e.preventDefault();
         const currentDate = new Date().toISOString();
+        const formattedDate = currentDate.toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true
+        });
         let checkInUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}/checkIn`;
         let requestBody = {
             datetime: currentDate
@@ -120,12 +172,21 @@ function EventDetails() {
             body: JSON.stringify(requestBody)
         })
         setCheckedIn(true);
-
+        setCheckInTime(formattedDate);
     }
 
     const checkOut = (e) => {
         e.preventDefault();
         const currentDate = new Date().toISOString();
+        const formattedDate = currentDate.toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true
+        });
         let checkInUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}/checkOut`;
         let requestBody = {
             datetime: currentDate
@@ -137,8 +198,31 @@ function EventDetails() {
             body: JSON.stringify(requestBody)
         })
         setCheckedOut(true);
+        setCheckOutTime(formattedDate);
     }
+    useEffect(() => {
+        const fetchTimeWorked = async () => {
+            let userAttendsEventUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}`;
+            let userAttendsEventResponse = await fetch(userAttendsEventUrl);
+            let userAttendsEvent = await userAttendsEventResponse.json();
+            console.log(userAttendsEvent);
 
+            // Parse the check-in and check-out times
+            const checkIn = new Date(userAttendsEvent.checkIn);
+            const checkOut = new Date(userAttendsEvent.checkOut);
+
+            // Calculate the time difference between check-in and check-out times
+            const diffInMilliseconds = Math.abs(checkOut - checkIn);
+            const hours = Math.floor(diffInMilliseconds / (1000 * 60 * 60));
+            const minutes = Math.floor((diffInMilliseconds % (1000 * 60 * 60)) / (1000 * 60));
+
+            const timeWorkedString = `${hours} hours and ${minutes} minutes`;
+
+            setTimeWorked(timeWorkedString);
+        };
+
+        fetchTimeWorked();
+    }, [timeWorked]);
     function leaveEvent(){
         const deleteUrl = `https://voluntrackerapi.azurewebsites.net/UserAttendsEvent/${eventID}/${userInfo.memberID}`;
         fetch(deleteUrl, {
@@ -196,7 +280,12 @@ function EventDetails() {
             </div>
             {userInEvent ? (
                 checkedOut ? (
-                    <div>completed event</div>
+                    <div>
+                        <h3>Completed Event!</h3>
+                        <h4>Check In Time: {checkInTime}</h4>
+                        <h4>Check Out Time: {checkOutTime}</h4>
+                        <h4>Total Time Worked: {timeWorked}</h4>
+                    </div>
                 ) : (
                     <div>
                         <p>Please check in upon arrival.</p>

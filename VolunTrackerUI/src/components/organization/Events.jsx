@@ -13,7 +13,8 @@ function Events() {
     const { userOrganizations, setUserOrganizations } = useUserOrganizations();
     const [joinedOrgEvents, setJoinedOrgEvents] = useState([]);
     const [allEvents, setAllEvents] = useState([]);
-    const listRefAll = useRef(null);
+    const [orgEvents, setOrgEvents] = useState([]);
+
 
     const scroll = (direction, listRef) => {
         const list = listRef.current;
@@ -50,26 +51,41 @@ function Events() {
         };
 
         fetchData();
+    }, []);
 
-    }, );
+    const returnOrgNameAndEvents = (organization) => {
+        let eventBlocks = [];
+        for (let i = 0; i < allEvents.length; i++) {
+            if (allEvents[i].eventOwnerID === organization.organizationID) {
+                eventBlocks.push(
+                    <EventBlock key={allEvents[i].eventID} name={allEvents[i].name} eventID={allEvents[i].eventID} />
+                );
+            }
+        }
+        return eventBlocks;
+    };
 
     return (
         isAuthenticated() ? (
-            <div className="event-container">
-                <button className="scroll-button left" onClick={() => scroll('left', listRefAll)}>&lt;</button>
-                <div className="event-list" ref={listRefAll}>
-                    <p>Events</p>
-                    {joinedOrgEvents.map(eachEvent => (
-                        <EventBlock key={eachEvent.id} name={eachEvent.name} eventID={eachEvent.eventID} />
-                    ))}
+            <> {userOrganizations.map(eachOrg => (
+                <div key={eachOrg.id} className="event-container">
+                    <h3>{eachOrg.name} </h3>
+                    { returnOrgNameAndEvents(eachOrg).length !== 0 ? (
+                        <div className="event-list" style={{ display: 'flex' }}>
+                            { returnOrgNameAndEvents(eachOrg) }
+                        </div>
+                    ) : (
+                        <div>No events for this organization.</div>
+                    )}
+
+
                 </div>
-                <button className="scroll-button right" onClick={() => scroll('right', listRefAll)}>&gt;</button>
-            </div>
+            ))}
+            </>
         ) : (
             <div className={'column'}>
                 <p>Please log in to view events.</p>
             </div>
-
         )
     );
 }

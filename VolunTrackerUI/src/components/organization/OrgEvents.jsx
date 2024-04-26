@@ -61,7 +61,7 @@ function OrganizationEvents() {
                     <ListGroup>
                         {events.map(event => (
                             <ListGroup.Item key={event.eventID}>
-                                <Card>
+                                <Card style={{margin: "10px"}}>
                                     <Card.Body>
                                         <Card.Title>{event.name}</Card.Title>
                                         <Card.Subtitle className="mb-2 text-muted">

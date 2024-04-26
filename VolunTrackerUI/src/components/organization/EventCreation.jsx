@@ -7,7 +7,7 @@ function EventCreation() {
     const [formData, setFormData] = useState({
 
         name: '',
-        date: "2024-04-26T05:25:01.287Z", // Hardcoded ISO 8601 format date
+        date: '', // Hardcoded ISO 8601 format date
         street: '',
         city: '',
         state: '',
@@ -78,6 +78,17 @@ function EventCreation() {
                         />
                     </div>
                     <div className="input-container">
+                        <label className="eventCreationLabels">Date:</label>
+                        <input
+                            type="datetime-local"
+                            name="date"
+                            value={formData.date}
+                            onChange={handleChange}
+                            required
+                            className="createEventInputField"
+                        />
+                    </div>
+                    <div className="input-container">
                         <label className="eventCreationLabels">Street Address:</label>
                         <input
                             type="text"
@@ -101,17 +112,15 @@ function EventCreation() {
                     </div>
                     <div className="input-container">
                         <label className="eventCreationLabels">State:</label>
-                        <select
+                        <input
+                            type="text"
                             name="state"
                             value={formData.state}
                             onChange={handleChange}
                             className="createEventSelectField"
                             required>
-                            <option value="">Select a State</option>
-                            <option value="IL">Illinois</option>
-                            <option value="AZ">Arizona</option>
-                            <option value="TX">Texas</option>
-                        </select>
+
+                        </input>
                     </div>
                     <div className="input-container">
                         <label className="eventCreationLabels">Zip:</label>
@@ -137,7 +146,7 @@ function EventCreation() {
                         />
                     </div>
                     <div className="eventDescriptionContainer">
-                        <label className="eventDescriptionLabel">Description of Event:</label>
+                        <label className="eventCreationLabels">Description of Event:</label>
                         <textarea
                             name="description"
                             value={formData.description}

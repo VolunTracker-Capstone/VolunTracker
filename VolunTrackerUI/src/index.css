@@ -560,146 +560,164 @@ input[id=eventImgUpload] {
   margin-bottom: 20px;
 }
 
+/* For the delete button in settings */
+.delete-button {
+  font-size: 1.25rem;
+  color: white;
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.delete-button:hover,
+.delete-button:focus {
+  background-color: #c82333;
+  border-color: #bd2130;
+  outline: none;
+}
 @media only screen and (max-width: 1200px) {
-  /*About CSS*/
-  .aboutCards{
-    flex-flow: column;
-    gap: 50px;
-    align-items: center;
-  }
-  .card{
-    width: 95%;
-  }
-  /*Nav CSS*/
-  #pageTitle{
-    margin-left: 30px;
-  }
+    /*About CSS*/
+    .aboutCards{
+        flex-flow: column;
+        gap: 50px;
+        align-items: center;
+    }
+    .card{
+        width: 95%;
+    }
+    /*Nav CSS*/
+    #pageTitle{
+        margin-left: 30px;
+    }
 }
 @media only screen and (max-width: 992px) {
-  /*About CSS*/
-  .aboutCards{
-    gap: 30px;
-  }
-  /*Organization CSS*/
-  .createOrgContainer{
-    grid-template-columns: .5fr 1fr .5fr;
-    font-size: .95em;
-  }
-  .createOrgHeader{
-    grid-column: 2;
-    margin-bottom: 20px;
-  }
-  .orgFormContainer{
-    grid-column: 2;
-  }
-  .createOrgButton{
-    grid-column: 2;
-  }
-  .orgImageFormContainer{
-    grid-column: 2;
-  }
-  .orgCreationLabels{
-    font-size: 18px;
-  }
-  .createOrgInputField{
-    width: 100%;
-  }
-  .createOrgSelectField{
-    width: 105%;
-  }
-  /*Event CSS*/
-  .createEventContainer{
-    grid-template-columns: .5fr 1fr .5fr;
-    font-size: .95em;
-  }
-  .createEventHeader{
-    grid-column: 2;
-    margin-bottom: 20px;
-  }
-  .eventFormContainer{
-    grid-column: 2;
-  }
-  .createEventButton{
-    grid-column: 2;
-  }
-  .eventImageFormContainer{
-    grid-column: 2;
-  }
-  .eventCreationLabels{
-    font-size: 18px;
-  }
-  .createEventInputField{
-    width: 100%;
-  }
-  .createEventSelectField{
-    width: 105%;
-  }
-  /*FAQ CSS*/
-  .faq-page{
-    font-size: 1em;
-  }
-  /*Home CSS*/
-  .homeRows {
-    flex-direction: column;
-  }
-  .iconTitles {
-    font-size: 2.2rem;
-  }
-  .homeButton {
-    font-size: 1rem;
-    margin-top: 5px;
-  }
-  /*Nav CSS*/
-  #pageTitle{
-    font-size: 2.6rem;
-  }
+    /*About CSS*/
+    .aboutCards{
+        gap: 30px;
+    }
+    /*Organization CSS*/
+    .createOrgContainer{
+        grid-template-columns: .5fr 1fr .5fr;
+        font-size: .95em;
+    }
+    .createOrgHeader{
+        grid-column: 2;
+        margin-bottom: 20px;
+    }
+    .orgFormContainer{
+        grid-column: 2;
+    }
+    .createOrgButton{
+        grid-column: 2;
+    }
+    .orgImageFormContainer{
+        grid-column: 2;
+    }
+    .orgCreationLabels{
+        font-size: 18px;
+    }
+    .createOrgInputField{
+        width: 100%;
+    }
+    .createOrgSelectField{
+        width: 105%;
+    }
+    /*Event CSS*/
+    .createEventContainer{
+        grid-template-columns: .5fr 1fr .5fr;
+        font-size: .95em;
+    }
+    .createEventHeader{
+        grid-column: 2;
+        margin-bottom: 20px;
+    }
+    .eventFormContainer{
+        grid-column: 2;
+    }
+    .createEventButton{
+        grid-column: 2;
+    }
+    .eventImageFormContainer{
+        grid-column: 2;
+    }
+    .eventCreationLabels{
+        font-size: 18px;
+    }
+    .createEventInputField{
+        width: 100%;
+    }
+    .createEventSelectField{
+        width: 105%;
+    }
+    /*FAQ CSS*/
+    .faq-page{
+        font-size: 1em;
+    }
+    /*Home CSS*/
+    .homeRows {
+        flex-direction: column;
+    }
+    .iconTitles {
+        font-size: 2.2rem;
+    }
+    .homeButton {
+        font-size: 1rem;
+        margin-top: 5px;
+    }
+    /*Nav CSS*/
+    #pageTitle{
+        font-size: 2.6rem;
+    }
 }
 @media only screen and (max-width: 768px) {
-  /*About CSS*/
-  .card{
-    font-size: 1.1em;
-  }
-  /*Nav CSS*/
-  .mainHeader {
-    flex-direction: column;
-    align-items: center;
-  }
-  .column {
-    margin: 0;
-    text-align: center;
-  }
-  #pageTitle {
-    display: none;
-  }
-  #userIcon {
-    display: none;
-  }
-  .nav-item{
-    font-size: 1.1em;
-  }
+    /*About CSS*/
+    .card{
+        font-size: 1.1em;
+    }
+    /*Nav CSS*/
+    .mainHeader {
+        flex-direction: column;
+        align-items: center;
+    }
+    .column {
+        margin: 0;
+        text-align: center;
+    }
+    #pageTitle {
+        display: none;
+    }
+    #userIcon {
+        display: none;
+    }
+    .nav-item{
+        font-size: 1.1em;
+    }
 }
 @media only screen and (max-width: 580px) {
-  .nav-item{
-    font-size: 1em;
-  }
+    .nav-item{
+        font-size: 1em;
+    }
 }
 
 @media only screen and (max-width: 480px) {
-  /*About CSS*/
-  .card{
-    font-size: .9em;
-  }
-  .nav-item{
-    font-size: .9em;
-  }
+    /*About CSS*/
+    .card{
+        font-size: .9em;
+    }
+    .nav-item{
+        font-size: .9em;
+    }
 }
 @media only screen and (max-width: 395px) {
-  /*About CSS*/
-  .card{
-    font-size: .8em;
-  }
-  .nav-item{
-    font-size: .8em;
-  }
+    /*About CSS*/
+    .card {
+        font-size: .8em;
+    }
 
+    .nav-item {
+        font-size: .8em;
+    }
 }

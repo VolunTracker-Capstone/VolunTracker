@@ -668,3 +668,21 @@ input[id=eventImgUpload] {
   height: 30%;
   margin-bottom: 20px;
 }
+/* For the delete button in settings */
+.delete-button {
+  font-size: 1.25rem;
+  color: white;
+  background-color: #dc3545;
+  border: 1px solid #dc3545;
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.delete-button:hover,
+.delete-button:focus {
+  background-color: #c82333;
+  border-color: #bd2130;
+  outline: none;
+}

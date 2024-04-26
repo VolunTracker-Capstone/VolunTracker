@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 import {Link, useParams} from 'react-router-dom';
 import {MdPeopleAlt, MdSpaceDashboard} from "react-icons/md";
 import {BsClipboard2DataFill} from "react-icons/bs";
-import {FaFile} from "react-icons/fa";
+import {FaAddressBook, FaFile} from "react-icons/fa";
 import {IoIosSettings} from "react-icons/io";
+import {Card} from "react-bootstrap";
 
 function OrganizationMember(props) {
     const [memberDetails, setMemberDetails] = useState(null);
     const { organizationId, memberId } = useParams();
     const ManageLink = `/Manage`;
     const OrgLink = `/Manage/${organizationId}`;
+    const EventLink = `/Manage/${organizationId}/events`;
     const ReportLink = `/Manage/${organizationId}/report`;
     const FilesLink = `/Manage/${organizationId}/files`;
     const SettingsLink = `/Manage/${organizationId}/settings`;
@@ -46,24 +48,29 @@ function OrganizationMember(props) {
                 <div id="manageNav">
                     <Link to={ManageLink}><div id="manageNavItems"><MdSpaceDashboard /> Dashboard</div></Link>
                     <Link to={OrgLink}><div id="manageNavItems"><MdPeopleAlt/> Organization</div></Link>
+                    <Link to={EventLink}><div id="manageNavItems"><FaAddressBook /> Events</div></Link>
                     <Link to={ReportLink}><div id="manageNavItems"><BsClipboard2DataFill/> Reports</div></Link>
                     <Link to={FilesLink}><div id="manageNavItems"><FaFile/> Files</div></Link>
                     <Link to={SettingsLink}><div id="manageNavItems"><IoIosSettings/> Settings</div></Link>
                 </div>
 
-            <h1>Member Details</h1>
-            {memberDetails ? (
-                <div>
-                    <p>ID: {memberDetails.memberID}</p>
-                    <p>Name: {memberDetails.firstName} {memberDetails.lastName}</p>
-                    <p>Role: {memberDetails.role}</p>
-                    <p>Hours Worked: {memberDetails.hoursWorked}</p>
-                    {/* Add more member details here */}
+                <div style={{ padding: '20px' }}>
+                    <h1 style={{ textAlign: 'left', marginBottom: '20px' }}>Member Details</h1>
+                    {memberDetails ? (
+                        <Card style={{ width: 'auto', maxWidth: '500px' }}>
+                            <Card.Header as="h2">Member Details</Card.Header>
+                            <Card.Body>
+                                <Card.Title>{memberDetails.firstName} {memberDetails.lastName}</Card.Title>
+                                <Card.Text>ID: {memberDetails.memberID}</Card.Text>
+                                <Card.Text>Role: {memberDetails.role}</Card.Text>
+                                <Card.Text>Hours Worked: {memberDetails.hoursWorked}</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    ) : (
+                        <p>Loading member details...</p>
+                    )}
                 </div>
-            ) : (
-                <p>Loading member details...</p>
-            )}
-        </div>
+            </div>
         </div>
     );
 }

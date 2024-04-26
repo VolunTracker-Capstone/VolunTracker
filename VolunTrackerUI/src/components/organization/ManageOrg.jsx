@@ -7,6 +7,7 @@ import {IoIosSettings} from "react-icons/io";
 import { FaAddressBook } from "react-icons/fa";
 import useAuth from "../user/useAuth.jsx";
 import { useParams } from 'react-router-dom';
+import {Card} from "react-bootstrap";
 
 function ManageOrg(props) {
     const [members, setMembers] = useState([]);
@@ -21,12 +22,11 @@ function ManageOrg(props) {
     const FilesLink = `/Manage/${organizationId}/files`;
     const SettingsLink = `/Manage/${organizationId}/settings`;
 
-    // API URL with dynamic organizationId
     const url = `https://voluntrackerapi.azurewebsites.net/organizations/${organizationId}/members`;
 
     useEffect(() => {
         const fetchMembers = async () => {
-            if (jwt) { // Only fetch if the jwt token is present
+            if (jwt) {
                 try {
                     // Fetching organization members
                     const responseOrgMembers = await fetch(url, {
@@ -57,7 +57,7 @@ function ManageOrg(props) {
         };
 
         fetchMembers();
-    }, [jwt, url]); // Adding url as a dependency
+    }, [jwt, url]);
 
     return (
         <div className="manageGrid">
@@ -70,14 +70,17 @@ function ManageOrg(props) {
                 <Link to={SettingsLink}><div id="manageNavItems"><IoIosSettings/> Settings</div></Link>
             </div>
             <div className="manageContent">
-                <h2>Members of Organization {organizationId}:</h2>
-                <ul>
-                    {members.map(member => (
-                        <li key={member.memberID}>
-                            <Link to={`/manage/${member.orgID}/${member.memberID}`}>{member.username}</Link>
-                        </li>
-                    ))}
-                </ul>
+                <h2>Members of the Organization:</h2>
+                {members.map(member => (
+                    <Card key={member.memberID} className="mb-2">
+                        <Card.Body>
+                            <Card.Title>{member.username}</Card.Title>
+                            <Link to={`/manage/${member.orgID}/${member.memberID}`} className="btn btn-primary">
+                                View Profile
+                            </Link>
+                        </Card.Body>
+                    </Card>
+                ))}
             </div>
         </div>
     );
